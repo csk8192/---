@@ -6,7 +6,7 @@
 
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: #f5f5f5;
       text-align: center;
       padding: 30px;
@@ -14,24 +14,33 @@
 
     h1 {
       font-size: 40px;
+      margin-bottom: 30px;
     }
 
     table {
       margin: auto;
       border-collapse: collapse;
-      width: 80%;
+      width: 95%;
       background: white;
     }
 
     th, td {
       border: 1px solid #ccc;
-      padding: 15px;
-      font-size: 20px;
+      padding: 12px;
+      font-size: 18px;
     }
 
     th {
       background: #4CAF50;
       color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    tr:hover {
+      background: #eef;
     }
   </style>
 </head>
@@ -44,9 +53,13 @@
   <thead>
     <tr>
       <th>반</th>
-      <th>축구</th>
-      <th>피구</th>
-      <th>계주</th>
+      <th>종목1</th>
+      <th>종목2</th>
+      <th>종목3</th>
+      <th>종목4</th>
+      <th>종목5</th>
+      <th>종목6</th>
+      <th>종목7</th>
       <th>총점</th>
       <th>순위</th>
     </tr>
@@ -56,9 +69,11 @@
 </table>
 
 <script>
+
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-9aaEe4opawLLJhD247Pt48cVBsrDeaTT-aibVuNOJsRHcS9rBTos57n1_yXI3ZAUkBPi4mGVtcuo/pub?output=csv";
 
 async function loadScores() {
+
   const response = await fetch(csvUrl);
   const data = await response.text();
 
@@ -67,9 +82,11 @@ async function loadScores() {
   let html = "";
 
   rows.forEach(row => {
+
     const cols = row.split(",");
 
     if(cols.length > 1){
+
       html += `
         <tr>
           <td>${cols[0]}</td>
@@ -78,17 +95,24 @@ async function loadScores() {
           <td>${cols[3]}</td>
           <td>${cols[4]}</td>
           <td>${cols[5]}</td>
+          <td>${cols[6]}</td>
+          <td>${cols[7]}</td>
+          <td>${cols[8]}</td>
+          <td>${cols[9]}</td>
         </tr>
       `;
     }
+
   });
 
   document.querySelector("#scoreTable tbody").innerHTML = html;
+
 }
 
 loadScores();
 
 setInterval(loadScores, 5000);
+
 </script>
 
 </body>
