@@ -74,44 +74,55 @@ const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-9aaEe4opawLLJ
 
 async function loadScores() {
 
-  const response = await fetch(csvUrl);
-  const data = await response.text();
+  try {
 
-  const rows = data.split("\n").slice(1);
+    const response = await fetch(
+      csvUrl + "&t=" + new Date().getTime()
+    );
 
-  let html = "";
+    const data = await response.text();
 
-  rows.forEach(row => {
+    const rows = data.split("\n").slice(1);
 
-    const cols = row.split(",");
+    let newHtml = "";
 
-    if(cols.length > 1){
+    rows.forEach(row => {
 
-      html += `
-        <tr>
-          <td>${cols[0]}</td>
-          <td>${cols[1]}</td>
-          <td>${cols[2]}</td>
-          <td>${cols[3]}</td>
-          <td>${cols[4]}</td>
-          <td>${cols[5]}</td>
-          <td>${cols[6]}</td>
-          <td>${cols[7]}</td>
-          <td>${cols[8]}</td>
-          <td>${cols[9]}</td>
-        </tr>
-      `;
-    }
+      const cols = row.split(",");
 
-  });
+      if(cols.length > 1){
 
-  document.querySelector("#scoreTable tbody").innerHTML = html;
+        newHtml += `
+          <tr>
+            <td>${cols[0] || ""}</td>
+            <td>${cols[1] || ""}</td>
+            <td>${cols[2] || ""}</td>
+            <td>${cols[3] || ""}</td>
+            <td>${cols[4] || ""}</td>
+            <td>${cols[5] || ""}</td>
+            <td>${cols[6] || ""}</td>
+            <td>${cols[7] || ""}</td>
+            <td>${cols[8] || ""}</td>
+            <td>${cols[9] || ""}</td>
+          </tr>
+        `;
+      }
+
+    });
+
+    document.querySelector("#scoreTable tbody").innerHTML = newHtml;
+
+  } catch(error) {
+
+    console.error("데이터 불러오기 실패:", error);
+
+  }
 
 }
 
 loadScores();
 
-setInterval(loadScores, 1000);
+setInterval(loadScores, 2000);
 
 </script>
 
