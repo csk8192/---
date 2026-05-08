@@ -38,10 +38,6 @@
     tr:nth-child(even) {
       background: #f9f9f9;
     }
-
-    tr:hover {
-      background: #eef;
-    }
   </style>
 </head>
 
@@ -70,51 +66,53 @@
 
 <script>
 
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-9aaEe4opawLLJhD247Pt48cVBsrDeaTT-aibVuNOJsRHcS9rBTos57n1_yXI3ZAUkBPi4mGVtcuo/pub?output=csv";
+const sheetID = "2PACX-1vT-9aaEe4opawLLJhD247Pt48cVBsrDeaTT-aibVuNOJsRHcS9rBTos57n1_yXI3ZAUkBPi4mGVtcuo";
+
+const url =
+`https://docs.google.com/spreadsheets/d/e/${sheetID}/gviz/tq?tqx=out:json`;
+
+let lastData = "";
 
 async function loadScores() {
 
   try {
 
-    const response = await fetch(
-      csvUrl + "&t=" + new Date().getTime()
+    const response = await fetch(url + "&t=" + Date.now());
+
+    const text = await response.text();
+
+    const json = JSON.parse(
+      text.substring(47).slice(0, -2)
     );
 
-    const data = await response.text();
+    const rows = json.table.rows;
 
-    const rows = data.split("\n").slice(1);
-
-    let newHtml = "";
+    let html = "";
 
     rows.forEach(row => {
 
-      const cols = row.split(",");
+      html += "<tr>";
 
-      if(cols.length > 1){
+      row.c.forEach(cell => {
 
-        newHtml += `
-          <tr>
-            <td>${cols[0] || ""}</td>
-            <td>${cols[1] || ""}</td>
-            <td>${cols[2] || ""}</td>
-            <td>${cols[3] || ""}</td>
-            <td>${cols[4] || ""}</td>
-            <td>${cols[5] || ""}</td>
-            <td>${cols[6] || ""}</td>
-            <td>${cols[7] || ""}</td>
-            <td>${cols[8] || ""}</td>
-            <td>${cols[9] || ""}</td>
-          </tr>
-        `;
-      }
+        html += `<td>${cell ? cell.v : ""}</td>`;
+
+      });
+
+      html += "</tr>";
 
     });
 
-    document.querySelector("#scoreTable tbody").innerHTML = newHtml;
+    if(html !== lastData){
 
-  } catch(error) {
+      document.querySelector("#scoreTable tbody").innerHTML = html;
+      lastData = html;
 
-    console.error("데이터 불러오기 실패:", error);
+    }
+
+  } catch(err) {
+
+    console.log(err);
 
   }
 
@@ -122,7 +120,7 @@ async function loadScores() {
 
 loadScores();
 
-setInterval(loadScores, 10000);
+setInterval(loadScores, 3000);
 
 </script>
 
