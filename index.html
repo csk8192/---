@@ -38,23 +38,58 @@
 
 <body>
 
-  <h1>🏆 체육대회 점수판</h1>
+<h1>🏆 체육대회 점수판</h1>
 
-  <table id="scoreTable">
-    <thead>
-      <tr>
-        <th>반</th>
-        <th>축구</th>
-        <th>피구</th>
-        <th>계주</th>
-        <th>총점</th>
-        <th>순위</th>
-      </tr>
-    </thead>
+<table id="scoreTable">
+  <thead>
+    <tr>
+      <th>반</th>
+      <th>축구</th>
+      <th>피구</th>
+      <th>계주</th>
+      <th>총점</th>
+      <th>순위</th>
+    </tr>
+  </thead>
 
-    <tbody>
-    </tbody>
-  </table>
+  <tbody></tbody>
+</table>
+
+<script>
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-9aaEe4opawLLJhD247Pt48cVBsrDeaTT-aibVuNOJsRHcS9rBTos57n1_yXI3ZAUkBPi4mGVtcuo/pub?output=csv";
+
+async function loadScores() {
+  const response = await fetch(csvUrl);
+  const data = await response.text();
+
+  const rows = data.split("\n").slice(1);
+
+  let html = "";
+
+  rows.forEach(row => {
+    const cols = row.split(",");
+
+    if(cols.length > 1){
+      html += `
+        <tr>
+          <td>${cols[0]}</td>
+          <td>${cols[1]}</td>
+          <td>${cols[2]}</td>
+          <td>${cols[3]}</td>
+          <td>${cols[4]}</td>
+          <td>${cols[5]}</td>
+        </tr>
+      `;
+    }
+  });
+
+  document.querySelector("#scoreTable tbody").innerHTML = html;
+}
+
+loadScores();
+
+setInterval(loadScores, 5000);
+</script>
 
 </body>
 </html>
