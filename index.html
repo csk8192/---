@@ -22,8 +22,8 @@
 
     h1 {
       text-align: center;
-      font-size: 50px;
-      margin-bottom: 40px;
+      font-size: 60px;
+      margin-bottom: 50px;
     }
 
     /* 시상대 */
@@ -32,94 +32,94 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 20px;
-      margin-bottom: 60px;
+      gap: 25px;
+      margin-bottom: 70px;
       flex-wrap: wrap;
     }
 
     .podium {
-      width: 180px;
-      border-radius: 20px 20px 0 0;
+      width: 220px;
+      border-radius: 25px 25px 0 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
-      padding: 20px;
+      padding: 25px;
       font-weight: bold;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       transition: 0.3s;
     }
 
     .podium:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
     }
 
     .first {
-      height: 320px;
+      height: 360px;
       background: gold;
       color: black;
       order: 2;
     }
 
     .second {
-      height: 250px;
+      height: 290px;
       background: silver;
       color: black;
       order: 1;
     }
 
     .third {
-      height: 210px;
+      height: 240px;
       background: #cd7f32;
       color: white;
       order: 3;
     }
 
     .rank-number {
-      font-size: 50px;
-      margin-bottom: 15px;
+      font-size: 60px;
+      margin-bottom: 20px;
     }
 
     .class-name {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 40px;
+      margin-bottom: 15px;
     }
 
     .score {
-      font-size: 24px;
+      font-size: 30px;
     }
 
     /* 4위 이하 */
 
     .others {
-      max-width: 700px;
+      max-width: 900px;
       margin: auto;
-      margin-bottom: 60px;
+      margin-bottom: 70px;
     }
 
     .others h2 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 30px;
+      margin-bottom: 25px;
+      font-size: 40px;
     }
 
     .other-row {
       background: rgba(255,255,255,0.1);
-      padding: 15px 20px;
-      border-radius: 15px;
-      margin-bottom: 10px;
+      padding: 20px 30px;
+      border-radius: 18px;
+      margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
-      font-size: 22px;
+      font-size: 30px;
       backdrop-filter: blur(5px);
     }
 
-    /* 표 */
+    /* 상세표 */
 
     .table-title {
       text-align: center;
-      font-size: 35px;
-      margin-bottom: 20px;
+      font-size: 50px;
+      margin-bottom: 30px;
     }
 
     table {
@@ -135,15 +135,15 @@
     th {
       background: #2563eb;
       color: white;
-      padding: 15px;
-      font-size: 16px;
+      padding: 18px;
+      font-size: 22px;
     }
 
     td {
-      padding: 12px;
+      padding: 16px;
       border-bottom: 1px solid #ddd;
       text-align: center;
-      font-size: 15px;
+      font-size: 22px;
     }
 
     th, td {
@@ -158,6 +158,10 @@
 
     @media(max-width: 768px){
 
+      h1 {
+        font-size: 42px;
+      }
+
       .podium-container {
         flex-direction: column;
         align-items: center;
@@ -166,11 +170,23 @@
       .first, .second, .third {
         width: 90%;
         height: auto;
-        min-height: 180px;
+        min-height: 200px;
+      }
+
+      .rank-number {
+        font-size: 48px;
+      }
+
+      .class-name {
+        font-size: 32px;
+      }
+
+      .score {
+        font-size: 24px;
       }
 
       .other-row {
-        font-size: 18px;
+        font-size: 22px;
       }
 
       table {
@@ -186,7 +202,7 @@
 
 <body>
 
-<h1>🎖체육대회 실시간 순위🎖</h1>
+<h1>🎖 체육대회 실시간 순위 🎖</h1>
 
 <!-- 시상대 -->
 
@@ -201,7 +217,7 @@
 
 <!-- 상세표 -->
 
-<h2 class="table-title"> 상세 점수표</h2>
+<h2 class="table-title">📊 상세 점수표</h2>
 
 <table id="scoreTable">
 
