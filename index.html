@@ -45,17 +45,19 @@
     /* 시상대 */
 
     .podium-container{
+
       display:flex;
 
       justify-content:center;
 
       align-items:flex-end;
 
-      gap:30px;
+      gap:35px;
 
       margin-bottom:80px;
 
       flex-wrap:wrap;
+
     }
 
     .podium{
@@ -70,15 +72,13 @@
 
       align-items:center;
 
-      justify-content:flex-start;
+      position:relative;
 
-      padding:45px 20px 30px;
+      padding-top:40px;
 
       font-weight:bold;
 
       text-align:center;
-
-      position:relative;
 
       overflow:hidden;
 
@@ -150,13 +150,33 @@
 
     .rank-number{
 
+      height:90px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
       font-size:78px;
 
-      line-height:1;
-
-      margin-bottom:30px;
+      margin-bottom:20px;
 
       font-weight:900;
+
+    }
+
+    .image-wrap{
+
+      height:210px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      margin-bottom:20px;
 
     }
 
@@ -168,8 +188,6 @@
       object-fit:cover;
 
       border-radius:30px;
-
-      margin-bottom:30px;
 
       border:5px solid rgba(255,255,255,0.92);
 
@@ -183,21 +201,39 @@
     }
 
     .first .team-image{
+
       width:180px;
       height:180px;
+
     }
 
     .class-name{
 
+      height:80px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
       font-size:56px;
 
-      margin-bottom:18px;
-
       font-weight:900;
+
+      margin-bottom:10px;
 
     }
 
     .score{
+
+      height:80px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
 
       font-size:44px;
 
@@ -208,11 +244,13 @@
     /* 4위 이하 */
 
     .others{
+
       max-width:1000px;
 
       margin:auto;
 
       margin-bottom:80px;
+
     }
 
     .others h2{
@@ -250,8 +288,11 @@
     }
 
     .other-row:hover{
+
       background:rgba(255,255,255,0.14);
+
       transform:scale(1.01);
+
     }
 
     /* 상세표 */
@@ -338,8 +379,11 @@
       }
 
       .podium-container{
+
         flex-direction:column;
+
         align-items:center;
+
       }
 
       .first,
@@ -370,6 +414,10 @@
         font-size:56px;
       }
 
+      .image-wrap{
+        height:160px;
+      }
+
       .team-image{
 
         width:110px;
@@ -385,11 +433,19 @@
       }
 
       .class-name{
+
         font-size:38px;
+
+        height:auto;
+
       }
 
       .score{
+
         font-size:30px;
+
+        height:auto;
+
       }
 
       .others h2{
@@ -647,14 +703,18 @@ function updatePodium(teams){
         ${medals[index]}
       </div>
 
-      ${teamImages[team.className] ? `
+      <div class="image-wrap">
 
-        <img
-          src="${teamImages[team.className]}"
-          class="team-image"
-        >
+        ${teamImages[team.className] ? `
 
-      ` : ''}
+          <img
+            src="${teamImages[team.className]}"
+            class="team-image"
+          >
+
+        ` : ''}
+
+      </div>
 
       <div class="class-name">
         ${team.className}
