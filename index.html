@@ -48,6 +48,7 @@
       font-weight: bold;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       transition: 0.3s;
+      text-align: center;
     }
 
     .podium:hover {
@@ -55,24 +56,39 @@
     }
 
     .first {
-      height: 360px;
+      height: 420px;
       background: gold;
       color: black;
       order: 2;
     }
 
     .second {
-      height: 290px;
+      height: 350px;
       background: silver;
       color: black;
       order: 1;
     }
 
     .third {
-      height: 240px;
+      height: 300px;
       background: #cd7f32;
       color: white;
       order: 3;
+    }
+
+    .team-image {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      border: 4px solid rgba(255,255,255,0.8);
+      background: white;
+    }
+
+    .first .team-image {
+      width: 145px;
+      height: 145px;
     }
 
     .rank-number {
@@ -137,6 +153,8 @@
       color: white;
       padding: 18px;
       font-size: 28px;
+      line-height: 1.4;
+      vertical-align: middle;
     }
 
     td {
@@ -144,6 +162,7 @@
       border-bottom: 1px solid #ddd;
       text-align: center;
       font-size: 28px;
+      vertical-align: middle;
     }
 
     th, td {
@@ -171,13 +190,13 @@
         align-items: center;
       }
 
-      .first, .second, .third {
+      .first,
+      .second,
+      .third {
         width: 95%;
         height: auto;
-        min-height: 200px;
+        min-height: 220px;
       }
-
-      /* 모바일 순서 수정 */
 
       .first {
         order: 1;
@@ -189,6 +208,16 @@
 
       .third {
         order: 3;
+      }
+
+      .team-image {
+        width: 100px;
+        height: 100px;
+      }
+
+      .first .team-image {
+        width: 120px;
+        height: 120px;
       }
 
       .rank-number {
@@ -225,11 +254,14 @@
       th {
         font-size: 18px;
         padding: 12px;
+        min-width: 90px;
+        line-height: 1.5;
       }
 
       td {
         font-size: 18px;
         padding: 12px;
+        min-width: 90px;
       }
 
     }
@@ -254,7 +286,7 @@
 
 <!-- 상세표 -->
 
-<h2 class="table-title"> 상세 점수표</h2>
+<h2 class="table-title">상세 점수표</h2>
 
 <table id="scoreTable">
 
@@ -262,11 +294,11 @@
     <tr>
       <th>반</th>
       <th>전략<br>줄다리기</th>
-      <th>팔자줄넘기</th>
-      <th>점보스택스</th>
+      <th>팔자<br>줄넘기</th>
+      <th>점보<br>스택스</th>
       <th>피구</th>
       <th>농구</th>
-      <th>미션달리기</th>
+      <th>미션<br>달리기</th>
       <th>계주</th>
       <th>총점</th>
       <th>순위</th>
@@ -283,6 +315,17 @@ const sheetID = "11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
 
 const url =
 `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+
+/* 반 사진 */
+
+const teamImages = {
+  "1반": "여기에1반사진URL",
+  "2반": "여기에2반사진URL",
+  "3반": "여기에3반사진URL",
+  "4반": "여기에4반사진URL",
+  "5반": "여기에5반사진URL",
+  "6반": "여기에6반사진URL"
+};
 
 let lastData = "";
 
@@ -367,7 +410,14 @@ function updatePodium(teams){
 
     div.innerHTML = `
       <div class="rank-number">${team.rank}위</div>
+
+      <img
+        src="${teamImages[team.className] || ''}"
+        class="team-image"
+      >
+
       <div class="class-name">${team.className}</div>
+
       <div class="score">${team.total}점</div>
     `;
 
