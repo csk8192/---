@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>체육대회 점수판</title>
 
   <style>
@@ -32,9 +32,13 @@
 
     h1{
       text-align:center;
+
       font-size:70px;
+
       margin-bottom:70px;
+
       font-weight:900;
+
       letter-spacing:-2px;
     }
 
@@ -42,21 +46,31 @@
 
     .podium-container{
       display:flex;
+
       justify-content:center;
+
       align-items:flex-end;
+
       gap:30px;
+
       margin-bottom:80px;
+
       flex-wrap:wrap;
     }
 
     .podium{
+
       width:260px;
 
       border-radius:35px 35px 0 0;
 
       display:flex;
+
       flex-direction:column;
+
       align-items:center;
+
+      justify-content:flex-start;
 
       padding:45px 20px 30px;
 
@@ -72,6 +86,7 @@
 
       box-shadow:
       0 15px 40px rgba(0,0,0,0.35);
+
     }
 
     .podium:hover{
@@ -79,7 +94,8 @@
     }
 
     .first{
-      height:620px;
+
+      height:640px;
 
       background:
       linear-gradient(
@@ -95,10 +111,12 @@
       box-shadow:
       0 0 35px rgba(255,215,0,0.8),
       0 0 70px rgba(255,215,0,0.35);
+
     }
 
     .second{
-      height:520px;
+
+      height:560px;
 
       background:
       linear-gradient(
@@ -110,10 +128,12 @@
       color:black;
 
       order:1;
+
     }
 
     .third{
-      height:460px;
+
+      height:500px;
 
       background:
       linear-gradient(
@@ -125,16 +145,23 @@
       color:white;
 
       order:3;
+
     }
 
     .rank-number{
+
       font-size:78px;
+
       line-height:1;
-      margin-bottom:28px;
+
+      margin-bottom:30px;
+
       font-weight:900;
+
     }
 
     .team-image{
+
       width:150px;
       height:150px;
 
@@ -142,7 +169,7 @@
 
       border-radius:30px;
 
-      margin-bottom:28px;
+      margin-bottom:30px;
 
       border:5px solid rgba(255,255,255,0.92);
 
@@ -152,6 +179,7 @@
 
       box-shadow:
       0 8px 25px rgba(0,0,0,0.28);
+
     }
 
     .first .team-image{
@@ -160,32 +188,47 @@
     }
 
     .class-name{
+
       font-size:56px;
+
       margin-bottom:18px;
+
       font-weight:900;
+
     }
 
     .score{
+
       font-size:44px;
+
       font-weight:900;
+
     }
 
     /* 4위 이하 */
 
     .others{
       max-width:1000px;
+
       margin:auto;
+
       margin-bottom:80px;
     }
 
     .others h2{
+
       text-align:center;
+
       margin-bottom:30px;
+
       font-size:42px;
+
       font-weight:900;
+
     }
 
     .other-row{
+
       background:rgba(255,255,255,0.08);
 
       padding:22px 35px;
@@ -203,6 +246,7 @@
       backdrop-filter:blur(6px);
 
       transition:0.25s;
+
     }
 
     .other-row:hover{
@@ -213,13 +257,19 @@
     /* 상세표 */
 
     .table-title{
+
       text-align:center;
+
       font-size:52px;
+
       margin-bottom:35px;
+
       font-weight:900;
+
     }
 
     table{
+
       width:100%;
 
       border-collapse:collapse;
@@ -233,9 +283,11 @@
       overflow:hidden;
 
       table-layout:fixed;
+
     }
 
     th{
+
       background:#2563eb;
 
       color:white;
@@ -247,9 +299,11 @@
       line-height:1.5;
 
       vertical-align:middle;
+
     }
 
     td{
+
       padding:18px;
 
       border-bottom:1px solid #ddd;
@@ -259,6 +313,7 @@
       font-size:28px;
 
       vertical-align:middle;
+
     }
 
     th, td{
@@ -290,9 +345,13 @@
       .first,
       .second,
       .third{
+
         width:95%;
+
         height:auto;
-        min-height:260px;
+
+        min-height:320px;
+
       }
 
       .first{
@@ -312,13 +371,17 @@
       }
 
       .team-image{
+
         width:110px;
         height:110px;
+
       }
 
       .first .team-image{
+
         width:130px;
         height:130px;
+
       }
 
       .class-name{
@@ -334,8 +397,11 @@
       }
 
       .other-row{
+
         font-size:22px;
+
         padding:18px;
+
       }
 
       .table-title{
@@ -349,15 +415,23 @@
       }
 
       th{
+
         font-size:18px;
+
         padding:12px;
+
         min-width:90px;
+
       }
 
       td{
+
         font-size:18px;
+
         padding:12px;
+
         min-width:90px;
+
       }
 
     }
@@ -371,22 +445,31 @@
 
 <!-- 시상대 -->
 
-<div class="podium-container" id="podiumContainer"></div>
+<div
+  class="podium-container"
+  id="podiumContainer">
+</div>
 
 <!-- 4위 이하 -->
 
 <div class="others">
+
   <h2>전체 순위</h2>
+
   <div id="otherRanks"></div>
+
 </div>
 
 <!-- 상세표 -->
 
-<h2 class="table-title">상세 점수표</h2>
+<h2 class="table-title">
+  상세 점수표
+</h2>
 
 <table id="scoreTable">
 
   <thead>
+
     <tr>
       <th>반</th>
       <th>전략<br>줄다리기</th>
@@ -399,6 +482,7 @@
       <th>총점</th>
       <th>순위</th>
     </tr>
+
   </thead>
 
   <tbody></tbody>
@@ -407,7 +491,8 @@
 
 <script>
 
-const sheetID = "11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
+const sheetID =
+"11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
 
 const url =
 `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
@@ -422,14 +507,25 @@ const teamImages = {
   "1-4": "1-4반사진URL",
   "1-5": "1-5반사진URL",
 
-  "2-1": "https://i.imgur.com/8oipbXD.jpeg",
-  "2-2": "https://i.imgur.com/AmDrQKp.png",
-  "2-3": "https://i.imgur.com/TEPDOy9.jpeg",
-  "2-4": "https://i.imgur.com/igmtQDB.jpeg"
+  "2-1":
+  "https://i.imgur.com/8oipbXD.jpeg",
+
+  "2-2":
+  "https://i.imgur.com/AmDrQKp.png",
+
+  "2-3":
+  "https://i.imgur.com/TEPDOy9.jpeg",
+
+  "2-4":
+  "https://i.imgur.com/igmtQDB.jpeg"
 
 };
 
-const medals = ["🥇", "🥈", "🥉"];
+const medals = [
+  "🥇",
+  "🥈",
+  "🥉"
+];
 
 let lastData = "";
 
@@ -441,13 +537,15 @@ async function loadScores(){
       url + "&t=" + Date.now()
     );
 
-    const text = await response.text();
+    const text =
+    await response.text();
 
     const json = JSON.parse(
       text.substring(47).slice(0, -2)
     );
 
-    const rows = json.table.rows;
+    const rows =
+    json.table.rows;
 
     let html = "";
 
@@ -455,28 +553,40 @@ async function loadScores(){
 
     rows.forEach(row => {
 
-      const cols = row.c.map(
+      const cols =
+      row.c.map(
         cell => cell ? cell.v : ""
       );
 
       teams.push({
+
         className: cols[0],
-        total: Number(cols[8]) || 0,
-        rank: Number(cols[9]) || 0,
+
+        total:
+        Number(cols[8]) || 0,
+
+        rank:
+        Number(cols[9]) || 0,
+
         data: cols
+
       });
 
       html += "<tr>";
 
       cols.forEach(col => {
+
         html += `<td>${col}</td>`;
+
       });
 
       html += "</tr>";
 
     });
 
-    teams.sort((a,b) => a.rank - b.rank);
+    teams.sort(
+      (a,b) => a.rank - b.rank
+    );
 
     if(html !== lastData){
 
@@ -501,15 +611,21 @@ async function loadScores(){
 function updatePodium(teams){
 
   const podiumContainer =
-  document.getElementById("podiumContainer");
+  document.getElementById(
+    "podiumContainer"
+  );
 
   const otherRanks =
-  document.getElementById("otherRanks");
+  document.getElementById(
+    "otherRanks"
+  );
 
   podiumContainer.innerHTML = "";
+
   otherRanks.innerHTML = "";
 
-  const top3 = teams.slice(0,3);
+  const top3 =
+  teams.slice(0,3);
 
   const classes = [
     "first",
@@ -519,7 +635,8 @@ function updatePodium(teams){
 
   top3.forEach((team, index) => {
 
-    const div = document.createElement("div");
+    const div =
+    document.createElement("div");
 
     div.className =
     `podium ${classes[index]}`;
@@ -555,7 +672,8 @@ function updatePodium(teams){
 
   teams.slice(3).forEach(team => {
 
-    const row = document.createElement("div");
+    const row =
+    document.createElement("div");
 
     row.className = "other-row";
 
