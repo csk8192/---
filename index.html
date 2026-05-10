@@ -26,6 +26,8 @@
       margin-bottom: 40px;
     }
 
+    /* 시상대 */
+
     .podium-container {
       display: flex;
       justify-content: center;
@@ -87,8 +89,10 @@
       font-size: 24px;
     }
 
+    /* 4위 이하 */
+
     .others {
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
       margin-bottom: 60px;
     }
@@ -110,6 +114,14 @@
       backdrop-filter: blur(5px);
     }
 
+    /* 표 */
+
+    .table-title {
+      text-align: center;
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -117,31 +129,32 @@
       color: black;
       border-radius: 15px;
       overflow: hidden;
+      table-layout: fixed;
     }
 
     th {
       background: #2563eb;
       color: white;
       padding: 15px;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     td {
       padding: 12px;
       border-bottom: 1px solid #ddd;
       text-align: center;
-      font-size: 17px;
+      font-size: 15px;
+    }
+
+    th, td {
+      word-break: keep-all;
     }
 
     tr:nth-child(even) {
       background: #f1f5f9;
     }
 
-    .table-title {
-      text-align: center;
-      font-size: 35px;
-      margin-bottom: 20px;
-    }
+    /* 모바일 */
 
     @media(max-width: 768px){
 
@@ -161,7 +174,7 @@
       }
 
       table {
-        font-size: 14px;
+        font-size: 12px;
         overflow-x: auto;
         display: block;
       }
@@ -175,16 +188,23 @@
 
 <h1>🏆 체육대회 실시간 순위</h1>
 
+<!-- 시상대 -->
+
 <div class="podium-container" id="podiumContainer"></div>
+
+<!-- 4위 이하 -->
 
 <div class="others">
   <h2>📋 전체 순위</h2>
   <div id="otherRanks"></div>
 </div>
 
+<!-- 상세표 -->
+
 <h2 class="table-title">📊 상세 점수표</h2>
 
 <table id="scoreTable">
+
   <thead>
     <tr>
       <th>반</th>
@@ -201,6 +221,7 @@
   </thead>
 
   <tbody></tbody>
+
 </table>
 
 <script>
@@ -327,4 +348,3 @@ setInterval(loadScores, 3000);
 
 </body>
 </html>
-```
