@@ -14,39 +14,83 @@
     }
 
     body{
+
       font-family:Arial, sans-serif;
 
       background:
       linear-gradient(
-        to bottom,
-        #081226,
-        #0f172a
-      );
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.7)
+      ),
+      url("https://i.imgur.com/LVXDo69.png");
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-attachment:fixed;
+
+      background-repeat:no-repeat;
 
       color:white;
 
       padding:30px;
 
       overflow-x:hidden;
+
+      position:relative;
+
+    }
+
+    /* 배경 블러 */
+
+    body::before{
+
+      content:"";
+
+      position:fixed;
+
+      inset:0;
+
+      backdrop-filter:blur(4px);
+
+      z-index:-1;
+
     }
 
     h1{
+
       text-align:center;
+
       font-size:70px;
+
       margin-bottom:70px;
+
       font-weight:900;
+
       letter-spacing:-2px;
+
+      text-shadow:
+      0 0 20px rgba(0,0,0,0.5);
+
     }
 
     /* 시상대 */
 
     .podium-container{
+
       display:flex;
+
       justify-content:center;
+
       align-items:flex-end;
+
       gap:35px;
+
       margin-bottom:80px;
+
       flex-wrap:wrap;
+
     }
 
     .podium{
@@ -71,8 +115,10 @@
 
       transition:0.35s;
 
+      backdrop-filter:blur(8px);
+
       box-shadow:
-      0 15px 40px rgba(0,0,0,0.35);
+      0 15px 40px rgba(0,0,0,0.4);
 
     }
 
@@ -89,8 +135,8 @@
       background:
       linear-gradient(
         to bottom,
-        #ffe600,
-        #facc15
+        rgba(255,230,0,0.95),
+        rgba(250,204,21,0.9)
       );
 
       color:black;
@@ -110,8 +156,8 @@
       background:
       linear-gradient(
         to bottom,
-        #e2e2e2,
-        #bdbdbd
+        rgba(226,226,226,0.92),
+        rgba(189,189,189,0.88)
       );
 
       color:black;
@@ -127,8 +173,8 @@
       background:
       linear-gradient(
         to bottom,
-        #d98a34,
-        #b96a1b
+        rgba(217,138,52,0.95),
+        rgba(185,106,27,0.9)
       );
 
       color:white;
@@ -161,6 +207,9 @@
 
       font-weight:900;
 
+      text-shadow:
+      0 4px 10px rgba(0,0,0,0.2);
+
     }
 
     .image-wrap{
@@ -187,7 +236,7 @@
       background:white;
 
       box-shadow:
-      0 8px 25px rgba(0,0,0,0.28);
+      0 8px 25px rgba(0,0,0,0.35);
 
     }
 
@@ -204,6 +253,9 @@
 
       line-height:1;
 
+      text-shadow:
+      0 4px 10px rgba(0,0,0,0.2);
+
     }
 
     .score{
@@ -214,21 +266,36 @@
 
       line-height:1;
 
+      text-shadow:
+      0 4px 10px rgba(0,0,0,0.2);
+
     }
 
     /* 4위 이하 */
 
     .others{
+
       max-width:1000px;
+
       margin:auto;
+
       margin-bottom:80px;
+
     }
 
     .others h2{
+
       text-align:center;
+
       margin-bottom:30px;
+
       font-size:42px;
+
       font-weight:900;
+
+      text-shadow:
+      0 0 15px rgba(0,0,0,0.5);
+
     }
 
     .other-row{
@@ -247,24 +314,38 @@
 
       font-size:30px;
 
-      backdrop-filter:blur(6px);
+      backdrop-filter:blur(10px);
 
       transition:0.25s;
+
+      border:
+      1px solid rgba(255,255,255,0.08);
 
     }
 
     .other-row:hover{
+
       background:rgba(255,255,255,0.14);
+
       transform:scale(1.01);
+
     }
 
     /* 상세표 */
 
     .table-title{
+
       text-align:center;
+
       font-size:52px;
+
       margin-bottom:35px;
+
       font-weight:900;
+
+      text-shadow:
+      0 0 15px rgba(0,0,0,0.5);
+
     }
 
     table{
@@ -273,7 +354,7 @@
 
       border-collapse:collapse;
 
-      background:white;
+      background:rgba(255,255,255,0.95);
 
       color:black;
 
@@ -282,6 +363,8 @@
       overflow:hidden;
 
       table-layout:fixed;
+
+      backdrop-filter:blur(10px);
 
     }
 
