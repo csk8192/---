@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>체육대회 점수판</title>
 
   <style>
@@ -32,32 +32,21 @@
 
     h1{
       text-align:center;
-
       font-size:70px;
-
       margin-bottom:70px;
-
       font-weight:900;
-
       letter-spacing:-2px;
     }
 
     /* 시상대 */
 
     .podium-container{
-
       display:flex;
-
       justify-content:center;
-
       align-items:flex-end;
-
       gap:35px;
-
       margin-bottom:80px;
-
       flex-wrap:wrap;
-
     }
 
     .podium{
@@ -72,13 +61,11 @@
 
       align-items:center;
 
-      position:relative;
-
-      padding-top:40px;
-
-      font-weight:bold;
+      justify-content:flex-end;
 
       text-align:center;
+
+      padding:30px 20px;
 
       overflow:hidden;
 
@@ -92,6 +79,8 @@
     .podium:hover{
       transform:translateY(-10px);
     }
+
+    /* 높이만 다르게 */
 
     .first{
 
@@ -148,19 +137,27 @@
 
     }
 
-    .rank-number{
+    /* 내부 정렬 */
 
-      height:90px;
+    .content-wrap{
+
+      width:100%;
 
       display:flex;
 
+      flex-direction:column;
+
       align-items:center;
 
-      justify-content:center;
+      gap:18px;
+
+    }
+
+    .rank-number{
 
       font-size:78px;
 
-      margin-bottom:20px;
+      line-height:1;
 
       font-weight:900;
 
@@ -168,15 +165,11 @@
 
     .image-wrap{
 
-      height:210px;
-
       display:flex;
 
       align-items:center;
 
       justify-content:center;
-
-      margin-bottom:20px;
 
     }
 
@@ -193,76 +186,49 @@
 
       background:white;
 
-      display:block;
-
       box-shadow:
       0 8px 25px rgba(0,0,0,0.28);
 
     }
 
     .first .team-image{
-
       width:180px;
       height:180px;
-
     }
 
     .class-name{
-
-      height:80px;
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
 
       font-size:56px;
 
       font-weight:900;
 
-      margin-bottom:10px;
+      line-height:1;
 
     }
 
     .score{
 
-      height:80px;
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
       font-size:44px;
 
       font-weight:900;
+
+      line-height:1;
 
     }
 
     /* 4위 이하 */
 
     .others{
-
       max-width:1000px;
-
       margin:auto;
-
       margin-bottom:80px;
-
     }
 
     .others h2{
-
       text-align:center;
-
       margin-bottom:30px;
-
       font-size:42px;
-
       font-weight:900;
-
     }
 
     .other-row{
@@ -288,25 +254,17 @@
     }
 
     .other-row:hover{
-
       background:rgba(255,255,255,0.14);
-
       transform:scale(1.01);
-
     }
 
     /* 상세표 */
 
     .table-title{
-
       text-align:center;
-
       font-size:52px;
-
       margin-bottom:35px;
-
       font-weight:900;
-
     }
 
     table{
@@ -339,8 +297,6 @@
 
       line-height:1.5;
 
-      vertical-align:middle;
-
     }
 
     td{
@@ -353,12 +309,6 @@
 
       font-size:28px;
 
-      vertical-align:middle;
-
-    }
-
-    th, td{
-      word-break:keep-all;
     }
 
     tr:nth-child(even){
@@ -379,23 +329,16 @@
       }
 
       .podium-container{
-
         flex-direction:column;
-
         align-items:center;
-
       }
 
       .first,
       .second,
       .third{
-
         width:95%;
-
         height:auto;
-
         min-height:320px;
-
       }
 
       .first{
@@ -414,38 +357,22 @@
         font-size:56px;
       }
 
-      .image-wrap{
-        height:160px;
-      }
-
       .team-image{
-
         width:110px;
         height:110px;
-
       }
 
       .first .team-image{
-
         width:130px;
         height:130px;
-
       }
 
       .class-name{
-
         font-size:38px;
-
-        height:auto;
-
       }
 
       .score{
-
         font-size:30px;
-
-        height:auto;
-
       }
 
       .others h2{
@@ -453,11 +380,8 @@
       }
 
       .other-row{
-
         font-size:22px;
-
         padding:18px;
-
       }
 
       .table-title{
@@ -471,23 +395,15 @@
       }
 
       th{
-
         font-size:18px;
-
         padding:12px;
-
         min-width:90px;
-
       }
 
       td{
-
         font-size:18px;
-
         padding:12px;
-
         min-width:90px;
-
       }
 
     }
@@ -525,7 +441,6 @@
 <table id="scoreTable">
 
   <thead>
-
     <tr>
       <th>반</th>
       <th>전략<br>줄다리기</th>
@@ -538,7 +453,6 @@
       <th>총점</th>
       <th>순위</th>
     </tr>
-
   </thead>
 
   <tbody></tbody>
@@ -593,15 +507,13 @@ async function loadScores(){
       url + "&t=" + Date.now()
     );
 
-    const text =
-    await response.text();
+    const text = await response.text();
 
     const json = JSON.parse(
       text.substring(47).slice(0, -2)
     );
 
-    const rows =
-    json.table.rows;
+    const rows = json.table.rows;
 
     let html = "";
 
@@ -624,16 +536,12 @@ async function loadScores(){
         rank:
         Number(cols[9]) || 0,
 
-        data: cols
-
       });
 
       html += "<tr>";
 
       cols.forEach(col => {
-
         html += `<td>${col}</td>`;
-
       });
 
       html += "</tr>";
@@ -677,11 +585,9 @@ function updatePodium(teams){
   );
 
   podiumContainer.innerHTML = "";
-
   otherRanks.innerHTML = "";
 
-  const top3 =
-  teams.slice(0,3);
+  const top3 = teams.slice(0,3);
 
   const classes = [
     "first",
@@ -699,29 +605,33 @@ function updatePodium(teams){
 
     div.innerHTML = `
 
-      <div class="rank-number">
-        ${medals[index]}
-      </div>
+      <div class="content-wrap">
 
-      <div class="image-wrap">
+        <div class="rank-number">
+          ${medals[index]}
+        </div>
 
-        ${teamImages[team.className] ? `
+        <div class="image-wrap">
 
-          <img
-            src="${teamImages[team.className]}"
-            class="team-image"
-          >
+          ${teamImages[team.className] ? `
 
-        ` : ''}
+            <img
+              src="${teamImages[team.className]}"
+              class="team-image"
+            >
 
-      </div>
+          ` : ''}
 
-      <div class="class-name">
-        ${team.className}
-      </div>
+        </div>
 
-      <div class="score">
-        ${team.total}점
+        <div class="class-name">
+          ${team.className}
+        </div>
+
+        <div class="score">
+          ${team.total}점
+        </div>
+
       </div>
 
     `;
