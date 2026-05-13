@@ -618,6 +618,24 @@ const sheetID =
 const url =
 `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
 
+  <script>
+
+const sheetID =
+"11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
+
+const url =
+`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+
+/* 영상 설정 */
+
+const bgVideo = document.getElementById("bg-video");
+
+bgVideo.src =
+"https://raw.githubusercontent.com/csk8192/sports-ranking/main/cloudsky.mp4";
+
+bgVideo.playbackRate = 0.25;
+
+
 /* 반 사진 */
 
 const teamImages = {
@@ -811,12 +829,5 @@ loadScores();
 setInterval(loadScores, 10000);
   
 </script>
-const bgVideo = document.getElementById("bg-video");
-
-bgVideo.src =
-"https://raw.githubusercontent.com/csk8192/sports-ranking/main/cloudsky.mp4";
-
-bgVideo.playbackRate = 0.25;
-
 </body>
 </html>
