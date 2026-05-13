@@ -14,583 +14,224 @@
     }
 
     body{
-
       font-family:Arial, sans-serif;
-
       background:#000;
-
       color:white;
-
       padding:22px;
-
       overflow-x:hidden;
-
       position:relative;
-
     }
 
     /* 배경 영상 */
-
     #bg-video{
-
       position:fixed;
-
       top:0;
       left:0;
-
       width:100%;
       height:100%;
-
       object-fit:cover;
-
       z-index:-2;
-
     }
-
-    /* 영상 위 필터 */
 
     body::before{
-
       content:"";
-
       position:fixed;
-
       inset:0;
-
-      background:
-      rgba(0,0,0,0.15);
-
+      background:rgba(0,0,0,0.15);
       backdrop-filter:blur(1.5px);
-
       z-index:-1;
-
     }
 
-    /* 제목 */
-
     h1{
-
       text-align:center;
-
       font-size:52px;
-
       margin-bottom:40px;
-
       font-weight:900;
-
       letter-spacing:-1px;
-
-      text-shadow:
-      0 0 20px rgba(0,0,0,0.45);
-
+      text-shadow:0 0 20px rgba(0,0,0,0.45);
     }
 
     /* 시상대 */
-
     .podium-container{
-
       display:flex;
-
       justify-content:center;
-
       align-items:flex-end;
-
       gap:30px;
-
       margin-bottom:60px;
-
       flex-wrap:wrap;
-
     }
 
     .podium{
-
       width:250px;
-
       border-radius:28px 28px 0 0;
-
       display:flex;
-
       flex-direction:column;
-
       align-items:center;
-
       justify-content:flex-end;
-
       text-align:center;
-
       padding:24px 14px;
-
-      overflow:hidden;
-
       transition:0.3s;
-
       backdrop-filter:blur(8px);
-
-      box-shadow:
-      0 12px 35px rgba(0,0,0,0.35);
-
+      box-shadow:0 12px 35px rgba(0,0,0,0.35);
     }
 
-    .podium:hover{
-      transform:translateY(-8px);
-    }
-
-    /* 1등 */
+    .podium:hover{ transform:translateY(-8px); }
 
     .first{
-
       height:600px;
-
-      background:
-      linear-gradient(
-        to bottom,
-
-        rgb(255, 236, 120) 0%,
-
-        rgb(255, 222, 90) 35%,
-
-        rgb(255, 205, 55) 70%,
-
-        rgb(251, 183, 40) 100%
-      );
-
-      backdrop-filter:none;
-
+      background:linear-gradient(to bottom,#ffec78,#ffde5a,#ffcd37,#fbb728);
       color:black;
-
       order:2;
-
-      box-shadow:
-
-      0 0 18px rgba(255, 235, 120, 0.9),
-
-      0 0 45px rgba(255, 215, 70, 0.55),
-
-      0 0 90px rgba(255, 200, 40, 0.28);
-
+      box-shadow:0 0 18px rgba(255,235,120,0.9),
+                 0 0 45px rgba(255,215,70,0.55);
     }
-
-    /* 2등 */
 
     .second{
-
       height:520px;
-
-      background:
-      linear-gradient(
-        to bottom,
-        rgba(240,240,240,0.95),
-        rgba(180,180,180,0.9)
-      );
-
+      background:linear-gradient(to bottom,#f0f0f0,#b4b4b4);
       color:black;
-
       order:1;
-
     }
-
-    /* 3등 */
 
     .third{
-
       height:470px;
-
-      background:
-      linear-gradient(
-        to bottom,
-        rgba(215,140,60,0.95),
-        rgba(170,95,25,0.9)
-      );
-
+      background:linear-gradient(to bottom,#d78c3c,#aa5f19);
       color:white;
-
       order:3;
-
     }
-
-    /* 내부 */
 
     .content-wrap{
-
-      width:100%;
-
       display:flex;
-
       flex-direction:column;
-
       align-items:center;
-
       gap:16px;
-
     }
 
-    .rank-number{
-
-      font-size:72px;
-
-      font-weight:900;
-
-      line-height:1;
-
-      text-shadow:
-      0 4px 10px rgba(0,0,0,0.18);
-
-    }
+    .rank-number{ font-size:72px; font-weight:900; }
 
     .team-image{
-
       width:145px;
       height:145px;
-
       object-fit:cover;
-
       border-radius:24px;
-
       border:4px solid rgba(255,255,255,0.92);
-
       background:white;
-
-      box-shadow:none;
-
     }
 
-    .first .team-image{
-      width:175px;
-      height:175px;
-    }
-
-    .class-name{
-
-      font-size:50px;
-
-      font-weight:900;
-
-      line-height:1;
-
-    }
-
-    .score{
-
-      font-size:40px;
-
-      font-weight:900;
-
-      line-height:1;
-
-    }
+    .class-name{ font-size:50px; font-weight:900; }
+    .score{ font-size:40px; font-weight:900; }
 
     /* 전체 순위 */
-
     .others{
-
       max-width:1000px;
-
       margin:auto;
-
       margin-bottom:60px;
-
     }
 
     .others h2{
-
       text-align:center;
-
       margin-bottom:24px;
-
       font-size:38px;
-
       font-weight:900;
-
-      text-shadow:
-      0 0 15px rgba(0,0,0,0.4);
-
     }
 
     .other-row{
-
       background:rgba(255,255,255,0.08);
-
       padding:20px 26px;
-
       border-radius:18px;
-
       margin-bottom:14px;
-
       display:flex;
-
       justify-content:space-between;
-
       font-size:28px;
-
       backdrop-filter:blur(8px);
-
-      transition:0.2s;
-
-      border:
-      1px solid rgba(255,255,255,0.08);
-
-    }
-
-    .other-row:hover{
-
-      background:rgba(255,255,255,0.14);
-
-      transform:scale(1.01);
-
     }
 
     /* 상세표 */
-
     .table-title{
-
       text-align:center;
-
       font-size:46px;
-
       margin-bottom:25px;
-
       font-weight:900;
-
     }
 
     table{
-
       width:100%;
-
       border-collapse:collapse;
-
       background:rgba(255,255,255,0.95);
-
       color:black;
-
       border-radius:20px;
-
       overflow:hidden;
-
       table-layout:fixed;
-
     }
 
     th{
-
       background:#2563eb;
-
       color:white;
-
       padding:16px;
-
       font-size:24px;
-
-      line-height:1.4;
-
     }
 
     td{
-
       padding:16px;
-
-      border-bottom:1px solid #ddd;
-
       text-align:center;
-
       font-size:24px;
-
     }
 
-    tr:nth-child(even){
-      background:#f1f5f9;
+    tr:nth-child(even){ background:#f1f5f9; }
+
+    /* 🔥 응원 UI */
+    .cheer-box{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:50px 0;
     }
 
-    /* 모바일 */
-
-    @media(max-width:768px){
-
-      body{
-        padding:10px;
-      }
-
-      h1{
-
-        font-size:30px;
-
-        margin-bottom:18px;
-
-        line-height:1.2;
-
-      }
-
-      /* 모바일 핵심 */
-
-      .podium-container{
-
-        display:flex;
-
-        flex-direction:row;
-
-        justify-content:space-between;
-
-        align-items:flex-end;
-
-        gap:5px;
-
-        flex-wrap:nowrap;
-
-        margin-bottom:25px;
-
-      }
-
-      .podium{
-
-        width:33.3%;
-
-        min-width:0;
-
-        padding:10px 4px;
-
-        border-radius:16px 16px 0 0;
-
-      }
-
-      .first{
-        height:230px;
-        order:2;
-      }
-
-      .second{
-        height:200px;
-        order:1;
-      }
-
-      .third{
-        height:180px;
-        order:3;
-      }
-
-      .content-wrap{
-        gap:8px;
-      }
-
-      .rank-number{
-        font-size:28px;
-      }
-
-      .team-image{
-        width:56px;
-        height:56px;
-        border-radius:12px;
-      }
-
-      .first .team-image{
-        width:66px;
-        height:66px;
-      }
-
-      .class-name{
-        font-size:18px;
-      }
-
-      .score{
-        font-size:16px;
-      }
-
-      .others{
-        margin-bottom:35px;
-      }
-
-      .others h2{
-        font-size:24px;
-        margin-bottom:14px;
-      }
-
-      .other-row{
-
-        font-size:16px;
-
-        padding:14px 16px;
-
-        border-radius:14px;
-
-      }
-
-      .table-title{
-
-        font-size:26px;
-
-        margin-bottom:14px;
-
-      }
-
-      table{
-
-        display:block;
-
-        overflow-x:auto;
-
-        white-space:nowrap;
-
-        border-radius:14px;
-
-      }
-
-      th{
-
-        font-size:13px;
-
-        padding:10px;
-
-        min-width:75px;
-
-      }
-
-      td{
-
-        font-size:13px;
-
-        padding:10px;
-
-        min-width:75px;
-
-      }
- 
+    #teamSelect{
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:700;
     }
+
+    .cheer-btn{
+      padding:16px 22px;
+      border:none;
+      border-radius:16px;
+      font-size:18px;
+      font-weight:900;
+      color:white;
+      background:linear-gradient(135deg,#ff3b3b,#ffb347);
+      box-shadow:0 0 25px rgba(255,80,80,0.4);
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .cheer-btn:hover{ transform:scale(1.05); }
+    .cheer-btn:active{ transform:scale(0.95); }
+    .cheer-btn:disabled{ opacity:0.5; }
 
   </style>
 </head>
 
 <body>
 
-<!-- 배경 영상 -->
 <video autoplay muted loop playsinline id="bg-video"></video>
-  
 
 <h1>🏅 체육대회 실시간 순위 🏅</h1>
 
-<!-- 시상대 -->
-
-<div
-  class="podium-container"
-  id="podiumContainer">
-</div>
-
-<!-- 전체 순위 -->
+<div class="podium-container" id="podiumContainer"></div>
 
 <div class="others">
-
   <h2>전체 순위</h2>
-
   <div id="otherRanks"></div>
-
 </div>
 
-<!-- 상세표 -->
-
-<h2 class="table-title">
-  상세 점수표
-</h2>
+<h2 class="table-title">상세 점수표</h2>
 
 <table id="scoreTable">
-
   <thead>
     <tr>
       <th>반</th>
@@ -605,220 +246,149 @@
       <th>순위</th>
     </tr>
   </thead>
-
   <tbody></tbody>
-
 </table>
 
+<!-- 🔥 응원 UI -->
+<h2 class="table-title">🔥 응원하기</h2>
+
+<div class="cheer-box">
+  <select id="teamSelect">
+    <option value="">반 선택</option>
+    <option value="1-1">1-1</option>
+    <option value="1-2">1-2</option>
+    <option value="1-3">1-3</option>
+    <option value="1-4">1-4</option>
+    <option value="1-5">1-5</option>
+    <option value="2-1">2-1</option>
+    <option value="2-2">2-2</option>
+    <option value="2-3">2-3</option>
+    <option value="2-4">2-4</option>
+  </select>
+
+  <button class="cheer-btn" onclick="cheer()">🔥 응원하기</button>
+</div>
+
 <script>
-const sheetID =
-"11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
 
-const url =
-`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
-
-/* 영상 설정 */
+const sheetID = "11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
+const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
 
 const bgVideo = document.getElementById("bg-video");
-
-bgVideo.src =
-"https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
-
+bgVideo.src = "https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
 bgVideo.playbackRate = 0.25;
 
-
-/* 반 사진 */
-
 const teamImages = {
-
-  "1-1": "https://i.imgur.com/MpnuhBg.jpeg",
-  "1-2": "1-2반사진URL",
-  "1-3": "1-3반사진URL",
-  "1-4": "https://i.imgur.com/Q3g7twn.jpeg",
-  "1-5": "https://i.imgur.com/6LCLkCp.jpeg",
-
-  "2-1":
-  "https://i.imgur.com/8oipbXD.jpeg",
-
-  "2-2":
-  "https://i.imgur.com/AmDrQKp.png",
-
-  "2-3":
-  "https://i.imgur.com/7dblb2B.jpeg",
-
-  "2-4":
-  "https://i.imgur.com/igmtQDB.jpeg"
-
+  "1-1":"https://i.imgur.com/MpnuhBg.jpeg",
+  "1-4":"https://i.imgur.com/Q3g7twn.jpeg",
+  "1-5":"https://i.imgur.com/6LCLkCp.jpeg",
+  "2-1":"https://i.imgur.com/8oipbXD.jpeg",
+  "2-2":"https://i.imgur.com/AmDrQKp.png",
+  "2-3":"https://i.imgur.com/7dblb2B.jpeg",
+  "2-4":"https://i.imgur.com/igmtQDB.jpeg"
 };
 
-const medals = [
-  "🥇",
-  "🥈",
-  "🥉"
-];
-
-let lastData = "";
+const medals=["🥇","🥈","🥉"];
+let lastData="";
 
 async function loadScores(){
-
   try{
+    const response=await fetch(url+"&t="+Date.now());
+    const text=await response.text();
+    const json=JSON.parse(text.substring(47).slice(0,-2));
+    const rows=json.table.rows;
 
-    const response = await fetch(
-      url + "&t=" + Date.now()
-    );
+    let html="";
+    let teams=[];
 
-    const text = await response.text();
-
-    const json = JSON.parse(
-      text.substring(47).slice(0, -2)
-    );
-
-    const rows = json.table.rows;
-
-    let html = "";
-
-    let teams = [];
-
-    rows.forEach(row => {
-
-      const cols =
-      row.c.map(
-        cell => cell ? cell.v : ""
-      );
+    rows.forEach(row=>{
+      const cols=row.c.map(c=>c?c.v:"");
 
       teams.push({
-
-        className: cols[0],
-
-        total:
-        Number(cols[8]) || 0,
-
-        rank:
-        Number(cols[9]) || 0,
-
+        className:cols[0],
+        total:Number(cols[8])||0,
+        rank:Number(cols[9])||0
       });
 
-      html += "<tr>";
-
-      cols.forEach(col => {
-        html += `<td>${col}</td>`;
-      });
-
-      html += "</tr>";
-
+      html+="<tr>";
+      cols.forEach(col=>html+=`<td>${col}</td>`);
+      html+="</tr>";
     });
 
-    teams.sort(
-      (a,b) => a.rank - b.rank
-    );
+    teams.sort((a,b)=>a.rank-b.rank);
 
-    if(html !== lastData){
-
-      document.querySelector(
-        "#scoreTable tbody"
-      ).innerHTML = html;
-
+    if(html!==lastData){
+      document.querySelector("#scoreTable tbody").innerHTML=html;
       updatePodium(teams);
-
-      lastData = html;
-
+      lastData=html;
     }
 
-  }catch(err){
-
-    console.log(err);
-
-  }
-
+  }catch(e){console.log(e);}
 }
 
 function updatePodium(teams){
+  const podium=document.getElementById("podiumContainer");
+  const other=document.getElementById("otherRanks");
 
-  const podiumContainer =
-  document.getElementById(
-    "podiumContainer"
-  );
+  podium.innerHTML="";
+  other.innerHTML="";
 
-  const otherRanks =
-  document.getElementById(
-    "otherRanks"
-  );
+  teams.slice(0,3).forEach((t,i)=>{
+    const div=document.createElement("div");
+    div.className=`podium ${["first","second","third"][i]}`;
 
-  podiumContainer.innerHTML = "";
-  otherRanks.innerHTML = "";
-
-  const top3 = teams.slice(0,3);
-
-  const classes = [
-    "first",
-    "second",
-    "third"
-  ];
-
-  top3.forEach((team, index) => {
-
-    const div =
-    document.createElement("div");
-
-    div.className =
-    `podium ${classes[index]}`;
-
-    div.innerHTML = `
-
+    div.innerHTML=`
       <div class="content-wrap">
-
-        <div class="rank-number">
-          ${medals[index]}
-        </div>
-
-        ${teamImages[team.className] ? `
-
-          <img
-            src="${teamImages[team.className]}"
-            class="team-image"
-          >
-
-        ` : ''}
-
-        <div class="class-name">
-          ${team.className}
-        </div>
-
-        <div class="score">
-          ${team.total}점
-        </div>
-
+        <div class="rank-number">${medals[i]}</div>
+        ${teamImages[t.className]?`<img src="${teamImages[t.className]}" class="team-image">`:''}
+        <div class="class-name">${t.className}</div>
+        <div class="score">${t.total}점</div>
       </div>
-
     `;
-
-    podiumContainer.appendChild(div);
-
+    podium.appendChild(div);
   });
 
-  teams.slice(3).forEach(team => {
-
-    const row =
-    document.createElement("div");
-
-    row.className = "other-row";
-
-    row.innerHTML = `
-      <span>${team.rank}위</span>
-      <span>${team.className}</span>
-      <span>${team.total}점</span>
-    `;
-
-    otherRanks.appendChild(row);
-
+  teams.slice(3).forEach(t=>{
+    const row=document.createElement("div");
+    row.className="other-row";
+    row.innerHTML=`<span>${t.rank}위</span><span>${t.className}</span><span>${t.total}점</span>`;
+    other.appendChild(row);
   });
-
 }
 
 loadScores();
+setInterval(loadScores,10000);
 
-setInterval(loadScores, 10000);
-  
+/* 🔥 응원 기능 */
+let lastCheerTime=0;
+
+function cheer(){
+  const team=document.getElementById("teamSelect").value;
+  if(!team){alert("반 선택");return;}
+
+  const now=Date.now();
+  if(now-lastCheerTime<10000){
+    alert("10초 제한");
+    return;
+  }
+
+  lastCheerTime=now;
+
+  document.querySelector(".cheer-btn").disabled=true;
+
+  fetch("https://script.google.com/macros/s/AKfycbzVsnDJis_TE4An-ceyKfnAyHpnS5GPPthAtgxffciTVHhWrYlUs6xroXR2Km_dYaIb/exec",{
+    method:"POST",
+    body:JSON.stringify({team})
+  });
+
+  setTimeout(()=>{
+    document.querySelector(".cheer-btn").disabled=false;
+  },10000);
+
+  alert(`${team} 응원 완료🔥`);
+}
+
 </script>
+
 </body>
 </html>
