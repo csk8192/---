@@ -561,16 +561,8 @@
 <body>
 
 <!-- 배경 영상 -->
-
-<!-- 배경 영상 -->
-
-<video autoplay muted loop playsinline id="bg-video">
-
-  <source
-    src="https://raw.githubusercontent.com/csk8192/sports-ranking/main/cloudsky.mp4"
-    type="video/mp4">
-
-</video>
+<video autoplay muted loop playsinline id="bg-video"></video>
+  
 
 <h1>🏅 체육대회 실시간 순위 🏅</h1>
 
@@ -819,7 +811,12 @@ loadScores();
 setInterval(loadScores, 10000);
   
 </script>
+const bgVideo = document.getElementById("bg-video");
 
+bgVideo.src =
+"https://raw.githubusercontent.com/csk8192/sports-ranking/main/cloudsky.mp4";
+
+bgVideo.playbackRate = 0.25;
 
 </body>
 </html>
