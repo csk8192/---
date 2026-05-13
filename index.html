@@ -822,8 +822,16 @@ setInterval(loadScores, 10000);
 const bgVideo =
 document.getElementById("bg-video");
 
-bgVideo.playbackRate = 0.25;
+bgVideo.addEventListener(
+  "loadeddata",
+  () => {
 
+    bgVideo.playbackRate = 0.25;
+
+  }
+);
+
+</script>
 
 </body>
 </html>
