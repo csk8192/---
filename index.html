@@ -18,23 +18,20 @@
       font-family:Arial, sans-serif;
 
       background:
-linear-gradient(
-  rgba(0,0,0,0.15),
-  rgba(0,0,0,0.25)
-),
-url("https://i.imgur.com/ZqbTs7d.jpeg");
+      linear-gradient(
+        rgba(0,0,0,0.08),
+        rgba(0,0,0,0.18)
+      ),
+      url("https://i.imgur.com/ZqbTs7d.jpeg");
 
       background-size:cover;
-
       background-position:center;
-
       background-attachment:fixed;
-
       background-repeat:no-repeat;
 
       color:white;
 
-      padding:30px;
+      padding:22px;
 
       overflow-x:hidden;
 
@@ -42,7 +39,7 @@ url("https://i.imgur.com/ZqbTs7d.jpeg");
 
     }
 
-    /* 배경 블러 */
+    /* 배경 살짝 블러 */
 
     body::before{
 
@@ -52,26 +49,28 @@ url("https://i.imgur.com/ZqbTs7d.jpeg");
 
       inset:0;
 
-      backdrop-filter:blur(4px);
+      backdrop-filter:blur(1.5px);
 
       z-index:-1;
 
     }
 
+    /* 제목 */
+
     h1{
 
       text-align:center;
 
-      font-size:70px;
+      font-size:52px;
 
-      margin-bottom:70px;
+      margin-bottom:40px;
 
       font-weight:900;
 
-      letter-spacing:-2px;
+      letter-spacing:-1px;
 
       text-shadow:
-      0 0 20px rgba(0,0,0,0.5);
+      0 0 20px rgba(0,0,0,0.45);
 
     }
 
@@ -85,9 +84,9 @@ url("https://i.imgur.com/ZqbTs7d.jpeg");
 
       align-items:flex-end;
 
-      gap:35px;
+      gap:30px;
 
-      margin-bottom:80px;
+      margin-bottom:60px;
 
       flex-wrap:wrap;
 
@@ -95,9 +94,9 @@ url("https://i.imgur.com/ZqbTs7d.jpeg");
 
     .podium{
 
-      width:260px;
+      width:250px;
 
-      border-radius:35px 35px 0 0;
+      border-radius:28px 28px 0 0;
 
       display:flex;
 
@@ -109,55 +108,58 @@ url("https://i.imgur.com/ZqbTs7d.jpeg");
 
       text-align:center;
 
-      padding:30px 20px;
+      padding:24px 14px;
 
       overflow:hidden;
 
-      transition:0.35s;
+      transition:0.3s;
 
       backdrop-filter:blur(8px);
 
       box-shadow:
-      0 15px 40px rgba(0,0,0,0.4);
+      0 12px 35px rgba(0,0,0,0.35);
 
     }
 
     .podium:hover{
-      transform:translateY(-10px);
+      transform:translateY(-8px);
     }
 
-    /* 높이만 다르게 */
+    /* 1등 */
 
     .first{
 
-      height:640px;
+      height:600px;
 
       background:
-linear-gradient(
-  to bottom,
-  rgb(255, 210, 80),
-  rgb(236, 189, 53)
-);
+      linear-gradient(
+        to bottom,
+        rgb(255, 215, 90),
+        rgb(236, 189, 53)
+      );
 
       color:black;
 
       order:2;
 
-     box-shadow:
-0 0 25px rgba(255, 220, 80, 1),
-0 0 60px rgba(255, 200, 0, 0.95),
-0 0 120px rgba(255, 180, 0, 0.75);
+      box-shadow:
+      0 0 25px rgba(255, 220, 80, 1),
+      0 0 60px rgba(255, 200, 0, 0.95),
+      0 0 120px rgba(255, 180, 0, 0.7);
+
     }
+
+    /* 2등 */
 
     .second{
 
-      height:560px;
+      height:520px;
 
       background:
       linear-gradient(
         to bottom,
-        rgba(226,226,226,0.92),
-        rgba(189,189,189,0.88)
+        rgba(240,240,240,0.95),
+        rgba(180,180,180,0.9)
       );
 
       color:black;
@@ -166,15 +168,17 @@ linear-gradient(
 
     }
 
+    /* 3등 */
+
     .third{
 
-      height:500px;
+      height:470px;
 
       background:
       linear-gradient(
         to bottom,
-        rgba(217,138,52,0.95),
-        rgba(185,106,27,0.9)
+        rgba(215,140,60,0.95),
+        rgba(170,95,25,0.9)
       );
 
       color:white;
@@ -183,7 +187,7 @@ linear-gradient(
 
     }
 
-    /* 내부 정렬 */
+    /* 내부 */
 
     .content-wrap{
 
@@ -195,83 +199,67 @@ linear-gradient(
 
       align-items:center;
 
-      gap:18px;
+      gap:16px;
 
     }
 
     .rank-number{
 
-      font-size:78px;
-
-      line-height:1;
+      font-size:72px;
 
       font-weight:900;
 
+      line-height:1;
+
       text-shadow:
-      0 4px 10px rgba(0,0,0,0.2);
-
-    }
-
-    .image-wrap{
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
+      0 4px 10px rgba(0,0,0,0.18);
 
     }
 
     .team-image{
 
-      width:150px;
-      height:150px;
+      width:145px;
+      height:145px;
 
       object-fit:cover;
 
-      border-radius:30px;
+      border-radius:24px;
 
-      border:5px solid rgba(255,255,255,0.92);
+      border:4px solid rgba(255,255,255,0.92);
 
       background:white;
 
       box-shadow:
-      0 8px 25px rgba(0,0,0,0.35);
+      0 8px 22px rgba(0,0,0,0.3);
 
     }
 
     .first .team-image{
-      width:180px;
-      height:180px;
+      width:175px;
+      height:175px;
     }
 
     .class-name{
 
-      font-size:56px;
+      font-size:50px;
 
       font-weight:900;
 
       line-height:1;
-
-      text-shadow:
-      0 4px 10px rgba(0,0,0,0.2);
 
     }
 
     .score{
 
-      font-size:44px;
+      font-size:40px;
 
       font-weight:900;
 
       line-height:1;
 
-      text-shadow:
-      0 4px 10px rgba(0,0,0,0.2);
-
     }
 
-    /* 4위 이하 */
+    /* 전체 순위 */
 
     .others{
 
@@ -279,7 +267,7 @@ linear-gradient(
 
       margin:auto;
 
-      margin-bottom:80px;
+      margin-bottom:60px;
 
     }
 
@@ -287,14 +275,14 @@ linear-gradient(
 
       text-align:center;
 
-      margin-bottom:30px;
+      margin-bottom:24px;
 
-      font-size:42px;
+      font-size:38px;
 
       font-weight:900;
 
       text-shadow:
-      0 0 15px rgba(0,0,0,0.5);
+      0 0 15px rgba(0,0,0,0.4);
 
     }
 
@@ -302,21 +290,21 @@ linear-gradient(
 
       background:rgba(255,255,255,0.08);
 
-      padding:22px 35px;
+      padding:20px 26px;
 
-      border-radius:20px;
+      border-radius:18px;
 
-      margin-bottom:16px;
+      margin-bottom:14px;
 
       display:flex;
 
       justify-content:space-between;
 
-      font-size:30px;
+      font-size:28px;
 
-      backdrop-filter:blur(10px);
+      backdrop-filter:blur(8px);
 
-      transition:0.25s;
+      transition:0.2s;
 
       border:
       1px solid rgba(255,255,255,0.08);
@@ -337,14 +325,11 @@ linear-gradient(
 
       text-align:center;
 
-      font-size:52px;
+      font-size:46px;
 
-      margin-bottom:35px;
+      margin-bottom:25px;
 
       font-weight:900;
-
-      text-shadow:
-      0 0 15px rgba(0,0,0,0.5);
 
     }
 
@@ -364,8 +349,6 @@ linear-gradient(
 
       table-layout:fixed;
 
-      backdrop-filter:blur(10px);
-
     }
 
     th{
@@ -374,23 +357,23 @@ linear-gradient(
 
       color:white;
 
-      padding:18px;
+      padding:16px;
 
-      font-size:28px;
+      font-size:24px;
 
-      line-height:1.5;
+      line-height:1.4;
 
     }
 
     td{
 
-      padding:18px;
+      padding:16px;
 
       border-bottom:1px solid #ddd;
 
       text-align:center;
 
-      font-size:28px;
+      font-size:24px;
 
     }
 
@@ -398,95 +381,155 @@ linear-gradient(
       background:#f1f5f9;
     }
 
-    /* 모바일 */
+    /* 모바일 최적화 */
 
     @media(max-width:768px){
 
       body{
-        padding:15px;
+        padding:10px;
       }
 
       h1{
-        font-size:42px;
-        margin-bottom:40px;
+
+        font-size:30px;
+
+        margin-bottom:18px;
+
+        line-height:1.2;
+
       }
+
+      /* 모바일 핵심 */
 
       .podium-container{
-        flex-direction:column;
-        align-items:center;
+
+        display:flex;
+
+        flex-direction:row;
+
+        justify-content:space-between;
+
+        align-items:flex-end;
+
+        gap:5px;
+
+        flex-wrap:nowrap;
+
+        margin-bottom:25px;
+
       }
 
-      .first,
-      .second,
-      .third{
-        width:95%;
-        height:auto;
-        min-height:320px;
+      .podium{
+
+        width:33.3%;
+
+        min-width:0;
+
+        padding:10px 4px;
+
+        border-radius:16px 16px 0 0;
+
       }
 
       .first{
-        order:1;
-      }
-
-      .second{
+        height:230px;
         order:2;
       }
 
+      .second{
+        height:200px;
+        order:1;
+      }
+
       .third{
+        height:180px;
         order:3;
       }
 
+      .content-wrap{
+        gap:8px;
+      }
+
       .rank-number{
-        font-size:56px;
+        font-size:28px;
       }
 
       .team-image{
-        width:110px;
-        height:110px;
+        width:56px;
+        height:56px;
+        border-radius:12px;
       }
 
       .first .team-image{
-        width:130px;
-        height:130px;
+        width:66px;
+        height:66px;
       }
 
       .class-name{
-        font-size:38px;
+        font-size:18px;
       }
 
       .score{
-        font-size:30px;
+        font-size:16px;
+      }
+
+      .others{
+        margin-bottom:35px;
       }
 
       .others h2{
-        font-size:34px;
+        font-size:24px;
+        margin-bottom:14px;
       }
 
       .other-row{
-        font-size:22px;
-        padding:18px;
+
+        font-size:16px;
+
+        padding:14px 16px;
+
+        border-radius:14px;
+
       }
 
       .table-title{
-        font-size:36px;
+
+        font-size:26px;
+
+        margin-bottom:14px;
+
       }
 
       table{
+
         display:block;
+
         overflow-x:auto;
+
         white-space:nowrap;
+
+        border-radius:14px;
+
       }
 
       th{
-        font-size:18px;
-        padding:12px;
-        min-width:90px;
+
+        font-size:13px;
+
+        padding:10px;
+
+        min-width:75px;
+
       }
 
       td{
-        font-size:18px;
-        padding:12px;
-        min-width:90px;
+
+        font-size:13px;
+
+        padding:10px;
+
+        min-width:75px;
+
       }
 
     }
@@ -505,7 +548,7 @@ linear-gradient(
   id="podiumContainer">
 </div>
 
-<!-- 4위 이하 -->
+<!-- 전체 순위 -->
 
 <div class="others">
 
@@ -694,18 +737,14 @@ function updatePodium(teams){
           ${medals[index]}
         </div>
 
-        <div class="image-wrap">
+        ${teamImages[team.className] ? `
 
-          ${teamImages[team.className] ? `
+          <img
+            src="${teamImages[team.className]}"
+            class="team-image"
+          >
 
-            <img
-              src="${teamImages[team.className]}"
-              class="team-image"
-            >
-
-          ` : ''}
-
-        </div>
+        ` : ''}
 
         <div class="class-name">
           ${team.className}
@@ -744,7 +783,9 @@ function updatePodium(teams){
 
 loadScores();
 
-setInterval(loadScores, 3000);
+/* 10초마다 갱신 */
+
+setInterval(loadScores, 10000);
 
 </script>
 
