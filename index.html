@@ -76,11 +76,35 @@ h1{
   transform:translateY(-8px);
 }
 
+/* 🥇 1등 강조 */
 .first{
   height:600px;
-  background:linear-gradient(to bottom,#ffec78,#ffde5a,#ffcd37,#fbb728);
+  background:
+    radial-gradient(circle at top,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.45) 12%,
+    rgba(255,236,120,0.25) 25%,
+    rgba(255,236,120,0) 45%),
+    linear-gradient(to bottom,#fff8b0,#ffec78,#ffde5a,#ffcd37,#fbb728);
+
   color:black;
   order:2;
+
+  animation:goldGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes goldGlow{
+  0%{
+    filter:brightness(1);
+  }
+
+  50%{
+    filter:brightness(1.18);
+  }
+
+  100%{
+    filter:brightness(1);
+  }
 }
 
 .second{
@@ -342,7 +366,6 @@ const bgVideo=document.getElementById("bg-video");
 bgVideo.src="https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
 bgVideo.playbackRate=0.25;
 
-/* ⭐ 이미지 다시 추가 (핵심) */
 const teamImages={
   "1-1":"https://i.imgur.com/MpnuhBg.jpeg",
   "1-2":"https://i.imgur.com/Mfwb2e2.jpeg",
@@ -433,23 +456,26 @@ function cheer(){
   if(!team) return alert("반 선택");
 
   const now=Date.now();
-  if(now-lastCheer<3000) return alert("대기");
+
+  if(now-lastCheer<3000){
+    return alert("잠시 후 다시 응원해주세요!");
+  }
 
   lastCheer=now;
 
   fetch("https://script.google.com/macros/s/AKfycbwAf1l5sHXfQkg0DX_jDKAI47E_wCrFkIhFoSLLaMDR6y8GPjJvoND7x86R4Fu2DNap/exec",{
-  method:"POST",
-  body:JSON.stringify({ team })
-})
-.then(res=>res.text())
-.then(data=>{
-  console.log(data);
-  alert(`${team} 응원 완료🔥`);
-})
-.catch(err=>{
-  console.log(err);
-  alert("응원 실패");
-});
+    method:"POST",
+    body:JSON.stringify({ team })
+  })
+  .then(res=>res.text())
+  .then(data=>{
+    console.log(data);
+    alert(`${team} 응원 완료🔥`);
+  })
+  .catch(err=>{
+    console.log(err);
+    alert("응원 실패");
+  });
 }
 
 </script>
