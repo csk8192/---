@@ -78,7 +78,11 @@ h1{
 
 /* 🥇 1등 강조 */
 .first{
+  position:relative;
+  overflow:visible;
+
   height:600px;
+
   background:
     radial-gradient(circle at top,
     rgba(255,255,255,0.95) 0%,
@@ -93,6 +97,25 @@ h1{
   animation:goldGlow 2.4s ease-in-out infinite;
 }
 
+/* ✨ 아우라 */
+.first::before{
+  content:"";
+  position:absolute;
+  inset:-25px;
+
+  background:
+    radial-gradient(circle,
+    rgba(255,240,120,0.75) 0%,
+    rgba(255,220,80,0.35) 35%,
+    rgba(255,200,50,0.12) 55%,
+    transparent 75%);
+
+  z-index:-1;
+  filter:blur(28px);
+
+  animation:auraPulse 2.8s ease-in-out infinite;
+}
+
 @keyframes goldGlow{
   0%{
     filter:brightness(1);
@@ -104,6 +127,23 @@ h1{
 
   100%{
     filter:brightness(1);
+  }
+}
+
+@keyframes auraPulse{
+  0%{
+    transform:scale(1);
+    opacity:0.75;
+  }
+
+  50%{
+    transform:scale(1.08);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:0.75;
   }
 }
 
@@ -241,14 +281,15 @@ tr:nth-child(even){
 /* 📱 모바일 */
 @media(max-width:768px){
 
-  body{ padding:10px; }
+  body{
+    padding:10px;
+  }
 
   h1{
     font-size:28px;
     margin-bottom:15px;
   }
 
-  /* 시상대 */
   .podium-container{
     gap:6px;
     flex-wrap:nowrap;
@@ -260,13 +301,29 @@ tr:nth-child(even){
     border-radius:14px 14px 0 0;
   }
 
-  .first{ height:180px; }
-  .second{ height:160px; }
-  .third{ height:150px; }
+  .first{
+    height:180px;
+  }
 
-  .rank-number{ font-size:22px; }
-  .class-name{ font-size:14px; }
-  .score{ font-size:13px; }
+  .second{
+    height:160px;
+  }
+
+  .third{
+    height:150px;
+  }
+
+  .rank-number{
+    font-size:22px;
+  }
+
+  .class-name{
+    font-size:14px;
+  }
+
+  .score{
+    font-size:13px;
+  }
 
   .team-image{
     width:48px;
@@ -274,7 +331,6 @@ tr:nth-child(even){
     border-radius:10px;
   }
 
-  /* 표 */
   table{
     display:block;
     overflow-x:auto;
@@ -335,6 +391,7 @@ tr:nth-child(even){
       <th>순위</th>
     </tr>
   </thead>
+
   <tbody></tbody>
 </table>
 
@@ -360,10 +417,13 @@ tr:nth-child(even){
 <script>
 
 const sheetID="11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
+
 const url=`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
 
 const bgVideo=document.getElementById("bg-video");
+
 bgVideo.src="https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
+
 bgVideo.playbackRate=0.25;
 
 const teamImages={
@@ -379,18 +439,25 @@ const teamImages={
 };
 
 const medals=["🥇","🥈","🥉"];
+
 let lastData="";
 
 async function loadScores(){
+
   const res=await fetch(url+"&t="+Date.now());
+
   const text=await res.text();
+
   const json=JSON.parse(text.substring(47).slice(0,-2));
+
   const rows=json.table.rows;
 
   let html="";
+
   let teams=[];
 
   rows.forEach(r=>{
+
     const c=r.c.map(v=>v?v.v:"");
 
     teams.push({
@@ -405,25 +472,34 @@ async function loadScores(){
   teams.sort((a,b)=>a.rank-b.rank);
 
   if(html!==lastData){
+
     document.querySelector("#scoreTable tbody").innerHTML=html;
+
     updatePodium(teams);
+
     lastData=html;
   }
 }
 
 function updatePodium(teams){
+
   const p=document.getElementById("podiumContainer");
+
   const o=document.getElementById("otherRanks");
 
   p.innerHTML="";
+
   o.innerHTML="";
 
   teams.slice(0,3).forEach((t,i)=>{
+
     const d=document.createElement("div");
+
     d.className=`podium ${["first","second","third"][i]}`;
 
     d.innerHTML=`
       <div class="content-wrap">
+
         <div class="rank-number">${medals[i]}</div>
 
         ${teamImages[t.className]?`
@@ -431,29 +507,45 @@ function updatePodium(teams){
         `:''}
 
         <div class="class-name">${t.className}</div>
+
         <div class="score">${t.total}점</div>
+
       </div>
     `;
+
     p.appendChild(d);
   });
 
   teams.slice(3).forEach(t=>{
+
     const r=document.createElement("div");
+
     r.className="other-row";
-    r.innerHTML=`<span>${t.rank}위</span><span>${t.className}</span><span>${t.total}점</span>`;
+
+    r.innerHTML=`
+      <span>${t.rank}위</span>
+      <span>${t.className}</span>
+      <span>${t.total}점</span>
+    `;
+
     o.appendChild(r);
   });
 }
 
 loadScores();
+
 setInterval(loadScores,10000);
 
 /* 응원 */
 let lastCheer=0;
 
 function cheer(){
+
   const team=document.getElementById("teamSelect").value;
-  if(!team) return alert("반 선택");
+
+  if(!team){
+    return alert("반 선택");
+  }
 
   const now=Date.now();
 
@@ -469,11 +561,15 @@ function cheer(){
   })
   .then(res=>res.text())
   .then(data=>{
+
     console.log(data);
+
     alert(`${team} 응원 완료🔥`);
   })
   .catch(err=>{
+
     console.log(err);
+
     alert("응원 실패");
   });
 }
