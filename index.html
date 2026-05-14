@@ -273,7 +273,7 @@ tr:nth-child(even){
   align-items:center;
   gap:12px;
   flex-wrap:wrap;
-  margin:50px 0;
+  margin:50px 0 12px 0;
 }
 
 #teamSelect{
@@ -292,6 +292,16 @@ tr:nth-child(even){
   color:white;
   background:linear-gradient(135deg,#ff3b3b,#ffb347);
   cursor:pointer;
+}
+
+/* 🔥 응원 안내 문구 */
+.cheer-notice{
+  text-align:center;
+  font-size:14px;
+  color:rgba(255,255,255,0.82);
+  margin-top:8px;
+  margin-bottom:50px;
+  letter-spacing:0.2px;
 }
 
 /* 📱 모바일 */
@@ -373,6 +383,12 @@ tr:nth-child(even){
     font-size:15px;
     padding:12px 16px;
   }
+
+  .cheer-notice{
+    font-size:11px;
+    padding:0 10px;
+    line-height:1.5;
+  }
 }
 
 </style>
@@ -437,6 +453,11 @@ tr:nth-child(even){
     🔥 응원하기
   </button>
 
+</div>
+
+<!-- 🔥 추가된 안내 문구 -->
+<div class="cheer-notice">
+  반별 응원 점수는 추후 공개되며, 응원상 수여에 적극 반영됩니다.
 </div>
 
 <script>
@@ -642,4 +663,3 @@ function cheer(){
 
 </body>
 </html>
-
