@@ -72,7 +72,9 @@ h1{
   box-shadow:0 12px 35px rgba(0,0,0,0.35);
 }
 
-.podium:hover{ transform:translateY(-8px); }
+.podium:hover{
+  transform:translateY(-8px);
+}
 
 .first{
   height:600px;
@@ -102,7 +104,10 @@ h1{
   gap:16px;
 }
 
-.rank-number{ font-size:72px; font-weight:900; }
+.rank-number{
+  font-size:72px;
+  font-weight:900;
+}
 
 .team-image{
   width:145px;
@@ -112,8 +117,15 @@ h1{
   border:4px solid rgba(255,255,255,0.92);
 }
 
-.class-name{ font-size:50px; font-weight:900; }
-.score{ font-size:40px; font-weight:900; }
+.class-name{
+  font-size:50px;
+  font-weight:900;
+}
+
+.score{
+  font-size:40px;
+  font-weight:900;
+}
 
 /* 전체 순위 */
 .others{
@@ -137,10 +149,9 @@ h1{
   display:flex;
   justify-content:space-between;
   font-size:28px;
-  backdrop-filter:blur(8px);
 }
 
-/* 상세표 */
+/* 표 */
 .table-title{
   text-align:center;
   font-size:46px;
@@ -175,7 +186,7 @@ tr:nth-child(even){
   background:#f1f5f9;
 }
 
-/* 🔥 응원 UI */
+/* 응원 */
 .cheer-box{
   display:flex;
   justify-content:center;
@@ -186,7 +197,7 @@ tr:nth-child(even){
 }
 
 #teamSelect{
-  padding:12px 14px;
+  padding:12px;
   border-radius:12px;
   font-size:16px;
   font-weight:700;
@@ -203,8 +214,8 @@ tr:nth-child(even){
   cursor:pointer;
 }
 
-/* 📱 모바일 최적화 */
-@media (max-width:768px){
+/* 📱 모바일 */
+@media(max-width:768px){
 
   body{ padding:10px; }
 
@@ -239,12 +250,6 @@ tr:nth-child(even){
     border-radius:10px;
   }
 
-  /* 전체순위 */
-  .other-row{
-    font-size:14px;
-    padding:12px 14px;
-  }
-
   /* 표 */
   table{
     display:block;
@@ -261,6 +266,11 @@ tr:nth-child(even){
   .table-title{
     font-size:22px;
     margin-bottom:10px;
+  }
+
+  .other-row{
+    font-size:14px;
+    padding:12px 14px;
   }
 
   .cheer-btn{
@@ -304,7 +314,6 @@ tr:nth-child(even){
   <tbody></tbody>
 </table>
 
-<!-- 응원 -->
 <h2 class="table-title">🔥 응원하기</h2>
 
 <div class="cheer-box">
@@ -332,6 +341,17 @@ const url=`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:jso
 const bgVideo=document.getElementById("bg-video");
 bgVideo.src="https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
 bgVideo.playbackRate=0.25;
+
+/* ⭐ 이미지 다시 추가 (핵심) */
+const teamImages={
+  "1-1":"https://i.imgur.com/MpnuhBg.jpeg",
+  "1-4":"https://i.imgur.com/Q3g7twn.jpeg",
+  "1-5":"https://i.imgur.com/6LCLkCp.jpeg",
+  "2-1":"https://i.imgur.com/8oipbXD.jpeg",
+  "2-2":"https://i.imgur.com/AmDrQKp.png",
+  "2-3":"https://i.imgur.com/7dblb2B.jpeg",
+  "2-4":"https://i.imgur.com/igmtQDB.jpeg"
+};
 
 const medals=["🥇","🥈","🥉"];
 let lastData="";
@@ -376,12 +396,19 @@ function updatePodium(teams){
   teams.slice(0,3).forEach((t,i)=>{
     const d=document.createElement("div");
     d.className=`podium ${["first","second","third"][i]}`;
+
     d.innerHTML=`
       <div class="content-wrap">
         <div class="rank-number">${medals[i]}</div>
+
+        ${teamImages[t.className]?`
+          <img src="${teamImages[t.className]}" class="team-image">
+        `:''}
+
         <div class="class-name">${t.className}</div>
         <div class="score">${t.total}점</div>
-      </div>`;
+      </div>
+    `;
     p.appendChild(d);
   });
 
