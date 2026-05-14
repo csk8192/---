@@ -435,21 +435,18 @@ function cheer(){
 
   lastCheer=now;
 
-  fetch("https://script.google.com/macros/s/AKfycbyImz5hDu6CM37GDf9O-FZuEPtD-UAws_vFfN9zU7ajcL_0THlPi3wrtGXcdhezLguC/exec",{
+  fetch("https://script.google.com/macros/s/AKfycbwAf1l5sHXfQkg0DX_jDKAI47E_wCrFkIhFoSLLaMDR6y8GPjJvoND7x86R4Fu2DNap/exec",{
   method:"POST",
-  headers:{
-    "Content-Type":"application/json"
-  },
   body:JSON.stringify({ team })
 })
 .then(res=>res.text())
 .then(data=>{
-  alert(`${team} 응원 완료🔥`);
   console.log(data);
+  alert(`${team} 응원 완료🔥`);
 })
 .catch(err=>{
-  alert("응원 실패");
   console.log(err);
+  alert("응원 실패");
 });
 }
 
