@@ -431,7 +431,7 @@ function cheer(){
   if(!team) return alert("반 선택");
 
   const now=Date.now();
-  if(now-lastCheer<2000) return alert("대기");
+  if(now-lastCheer<3000) return alert("대기");
 
   lastCheer=now;
 
