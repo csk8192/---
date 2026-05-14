@@ -367,7 +367,7 @@ function cheer(){
   if(!team){alert("반 선택");return;}
 
   const now=Date.now();
-  if(now-lastCheerTime<10000){
+  if(now-lastCheerTime<5000){
     alert("10초 제한");
     return;
   }
