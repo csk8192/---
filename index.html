@@ -6,6 +6,7 @@
 <title>체육대회 점수판</title>
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -78,116 +79,85 @@ h1{
   transform:translateY(-8px);
 }
 
-/* 🥇 1등 초강화 아우라 */
+/* 🥇 1등 아우라 */
 .first{
   height:600px;
   color:black;
   order:2;
+  position:relative;
+  z-index:2;
 
-  background:
-    radial-gradient(circle at 50% -5%,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.95) 8%,
-      rgba(255,245,180,0.9) 18%,
-      rgba(255,230,120,0.55) 32%,
-      rgba(255,210,80,0.18) 48%,
-      rgba(255,210,80,0) 65%),
-    linear-gradient(to bottom,
-      #fffed7,
-      #fff29a,
-      #ffea66,
-      #ffd93d,
-      #ffbf1f);
+  background:linear-gradient(
+    to bottom,
+    #fff8c7,
+    #ffef8a,
+    #ffe05c,
+    #ffc933
+  );
 
-  border:3px solid rgba(255,255,255,0.85);
+  border:3px solid rgba(255,255,255,0.95);
+
+  box-shadow:
+    0 0 12px rgba(255,245,180,0.95),
+    0 0 28px rgba(255,220,80,0.9),
+    0 0 55px rgba(255,200,40,0.85),
+    0 0 95px rgba(255,180,20,0.65),
+    0 0 140px rgba(255,170,0,0.45);
 
   animation:goldAura 2s ease-in-out infinite;
 }
 
-/* 빛 퍼짐 */
+/* 퍼지는 황금빛 */
 .first::before{
   content:"";
   position:absolute;
-  top:-120px;
-  left:-90px;
-  width:430px;
-  height:430px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle,
-      rgba(255,255,255,0.9) 0%,
-      rgba(255,240,150,0.65) 20%,
-      rgba(255,220,80,0.35) 42%,
-      rgba(255,200,50,0.12) 58%,
-      rgba(255,200,50,0) 72%);
-  filter:blur(24px);
+  inset:-18px;
+  border-radius:38px 38px 0 0;
+
+  background:rgba(255,220,80,0.18);
+
+  filter:blur(22px);
+
   z-index:-1;
 
-  animation:auraPulse 2.4s ease-in-out infinite;
+  animation:auraPulse 2s ease-in-out infinite;
 }
 
-/* 반짝이는 빛줄기 */
+/* 기존 리본 제거 */
 .first::after{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-20%;
-  width:60%;
-  height:180%;
-  background:linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.12) 35%,
-    rgba(255,255,255,0.95) 50%,
-    rgba(255,255,255,0.12) 65%,
-    rgba(255,255,255,0) 100%
-  );
-
-  transform:rotate(12deg);
-  animation:shineMove 3.2s linear infinite;
+  display:none;
 }
 
 @keyframes goldAura{
+
   0%{
     filter:brightness(1);
-    transform:scale(1);
   }
 
   50%{
-    filter:brightness(1.22);
-    transform:scale(1.025);
+    filter:brightness(1.2);
   }
 
   100%{
     filter:brightness(1);
-    transform:scale(1);
   }
 }
 
 @keyframes auraPulse{
+
   0%{
-    opacity:0.8;
+    opacity:0.7;
     transform:scale(1);
   }
 
   50%{
     opacity:1;
-    transform:scale(1.12);
+    transform:scale(1.03);
   }
 
   100%{
-    opacity:0.8;
+    opacity:0.7;
     transform:scale(1);
-  }
-}
-
-@keyframes shineMove{
-  0%{
-    left:-60%;
-  }
-
-  100%{
-    left:130%;
   }
 }
 
@@ -347,21 +317,29 @@ tr:nth-child(even){
     border-radius:14px 14px 0 0;
   }
 
-  .first{ height:180px; }
-  .second{ height:160px; }
-  .third{ height:150px; }
-
-  .first::before{
-    width:180px;
+  .first{
     height:180px;
-    top:-40px;
-    left:-20px;
-    filter:blur(14px);
   }
 
-  .rank-number{ font-size:22px; }
-  .class-name{ font-size:14px; }
-  .score{ font-size:13px; }
+  .second{
+    height:160px;
+  }
+
+  .third{
+    height:150px;
+  }
+
+  .rank-number{
+    font-size:22px;
+  }
+
+  .class-name{
+    font-size:14px;
+  }
+
+  .score{
+    font-size:13px;
+  }
 
   .team-image{
     width:48px;
@@ -396,6 +374,7 @@ tr:nth-child(even){
     padding:12px 16px;
   }
 }
+
 </style>
 </head>
 
@@ -429,43 +408,61 @@ tr:nth-child(even){
       <th>순위</th>
     </tr>
   </thead>
+
   <tbody></tbody>
 </table>
 
 <h2 class="table-title">🔥 응원하기</h2>
 
 <div class="cheer-box">
+
   <select id="teamSelect">
+
     <option value="">반 선택</option>
+
     <option value="1-1">1-1</option>
     <option value="1-2">1-2</option>
     <option value="1-3">1-3</option>
     <option value="1-4">1-4</option>
     <option value="1-5">1-5</option>
+
     <option value="2-1">2-1</option>
     <option value="2-2">2-2</option>
     <option value="2-3">2-3</option>
     <option value="2-4">2-4</option>
+
   </select>
 
-  <button class="cheer-btn" onclick="cheer()">🔥 응원하기</button>
+  <button class="cheer-btn" onclick="cheer()">
+    🔥 응원하기
+  </button>
+
 </div>
 
 <script>
 
 const sheetID="11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
-const url=`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+
+const url=
+`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
 
 const bgVideo=document.getElementById("bg-video");
-bgVideo.src="https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
+
+bgVideo.src=
+"https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
+
 bgVideo.playbackRate=0.25;
 
+/* 팀 이미지 */
+
 const teamImages={
+
   "1-1":"https://i.imgur.com/MpnuhBg.jpeg",
   "1-2":"https://i.imgur.com/Mfwb2e2.jpeg",
   "1-3":"https://i.imgur.com/MpnuhBg.jpeg",
   "1-4":"https://i.imgur.com/Q3g7twn.jpeg",
   "1-5":"https://i.imgur.com/6LCLkCp.jpeg",
+
   "2-1":"https://i.imgur.com/8oipbXD.jpeg",
   "2-2":"https://i.imgur.com/AmDrQKp.png",
   "2-3":"https://i.imgur.com/7dblb2B.jpeg",
@@ -473,14 +470,19 @@ const teamImages={
 };
 
 const medals=["🥇","🥈","🥉"];
+
 let lastData="";
 
 async function loadScores(){
 
   const res=await fetch(url+"&t="+Date.now());
+
   const text=await res.text();
 
-  const json=JSON.parse(text.substring(47).slice(0,-2));
+  const json=JSON.parse(
+    text.substring(47).slice(0,-2)
+  );
+
   const rows=json.table.rows;
 
   let html="";
@@ -491,19 +493,25 @@ async function loadScores(){
     const c=r.c.map(v=>v?v.v:"");
 
     teams.push({
+
       className:c[0],
       total:Number(c[8])||0,
       rank:Number(c[9])||0
+
     });
 
     html+="<tr>"+c.map(v=>`<td>${v}</td>`).join("")+"</tr>";
+
   });
 
   teams.sort((a,b)=>a.rank-b.rank);
 
   if(html!==lastData){
 
-    document.querySelector("#scoreTable tbody").innerHTML=html;
+    document.querySelector(
+      "#scoreTable tbody"
+    ).innerHTML=html;
+
     updatePodium(teams);
 
     lastData=html;
@@ -513,6 +521,7 @@ async function loadScores(){
 function updatePodium(teams){
 
   const p=document.getElementById("podiumContainer");
+
   const o=document.getElementById("otherRanks");
 
   p.innerHTML="";
@@ -522,25 +531,36 @@ function updatePodium(teams){
 
     const d=document.createElement("div");
 
-    d.className=`podium ${["first","second","third"][i]}`;
+    d.className=
+      `podium ${["first","second","third"][i]}`;
 
     d.innerHTML=`
+
       <div class="content-wrap">
 
-        <div class="rank-number">${medals[i]}</div>
+        <div class="rank-number">
+          ${medals[i]}
+        </div>
 
-        ${teamImages[t.className]?`
-          <img src="${teamImages[t.className]}" class="team-image">
-        `:''}
+        ${teamImages[t.className] ? `
+          <img src="${teamImages[t.className]}"
+          class="team-image">
+        ` : ''}
 
-        <div class="class-name">${t.className}</div>
+        <div class="class-name">
+          ${t.className}
+        </div>
 
-        <div class="score">${t.total}점</div>
+        <div class="score">
+          ${t.total}점
+        </div>
 
       </div>
+
     `;
 
     p.appendChild(d);
+
   });
 
   teams.slice(3).forEach(t=>{
@@ -550,12 +570,17 @@ function updatePodium(teams){
     r.className="other-row";
 
     r.innerHTML=`
+
       <span>${t.rank}위</span>
+
       <span>${t.className}</span>
+
       <span>${t.total}점</span>
+
     `;
 
     o.appendChild(r);
+
   });
 }
 
@@ -569,24 +594,30 @@ let lastCheer=0;
 
 function cheer(){
 
-  const team=document.getElementById("teamSelect").value;
+  const team=
+    document.getElementById("teamSelect").value;
 
   if(!team){
+
     return alert("반 선택");
   }
 
   const now=Date.now();
 
   if(now-lastCheer<3000){
+
     return alert("잠시 후 다시 응원해주세요!");
   }
 
   lastCheer=now;
 
-  fetch("https://script.google.com/macros/s/AKfycbwAf1l5sHXfQkg0DX_jDKAI47E_wCrFkIhFoSLLaMDR6y8GPjJvoND7x86R4Fu2DNap/exec",{
-    method:"POST",
-    body:JSON.stringify({ team })
-  })
+  fetch(
+    "https://script.google.com/macros/s/AKfycbwAf1l5sHXfQkg0DX_jDKAI47E_wCrFkIhFoSLLaMDR6y8GPjJvoND7x86R4Fu2DNap/exec",
+    {
+      method:"POST",
+      body:JSON.stringify({ team })
+    }
+  )
 
   .then(res=>res.text())
 
@@ -595,6 +626,7 @@ function cheer(){
     console.log(data);
 
     alert(`${team} 응원 완료🔥`);
+
   })
 
   .catch(err=>{
@@ -602,6 +634,7 @@ function cheer(){
     console.log(err);
 
     alert("응원 실패");
+
   });
 }
 
