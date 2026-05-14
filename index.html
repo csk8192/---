@@ -437,6 +437,9 @@ function cheer(){
 
   fetch("https://script.google.com/macros/s/AKfycbwAf1l5sHXfQkg0DX_jDKAI47E_wCrFkIhFoSLLaMDR6y8GPjJvoND7x86R4Fu2DNap/exec",{
     method:"POST",
+    headers:{
+    "Content-Type":"application/json"
+  },
      body: JSON.stringify({ team })
   });
 
