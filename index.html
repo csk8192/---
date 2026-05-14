@@ -1,219 +1,274 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>체육대회 점수판</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>체육대회 점수판</title>
 
-  <style>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+body{
+  font-family:Arial, sans-serif;
+  background:#000;
+  color:white;
+  padding:22px;
+  overflow-x:hidden;
+  position:relative;
+}
 
-    body{
-      font-family:Arial, sans-serif;
-      background:#000;
-      color:white;
-      padding:22px;
-      overflow-x:hidden;
-      position:relative;
-    }
+/* 배경 영상 */
+#bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
 
-    /* 배경 영상 */
-    #bg-video{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      z-index:-2;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.15);
+  backdrop-filter:blur(1.5px);
+  z-index:-1;
+}
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.15);
-      backdrop-filter:blur(1.5px);
-      z-index:-1;
-    }
+h1{
+  text-align:center;
+  font-size:52px;
+  margin-bottom:40px;
+  font-weight:900;
+}
 
-    h1{
-      text-align:center;
-      font-size:52px;
-      margin-bottom:40px;
-      font-weight:900;
-      letter-spacing:-1px;
-      text-shadow:0 0 20px rgba(0,0,0,0.45);
-    }
+/* 시상대 */
+.podium-container{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:60px;
+  flex-wrap:wrap;
+}
 
-    /* 시상대 */
-    .podium-container{
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:30px;
-      margin-bottom:60px;
-      flex-wrap:wrap;
-    }
+.podium{
+  width:250px;
+  border-radius:28px 28px 0 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  text-align:center;
+  padding:24px 14px;
+  transition:0.3s;
+  backdrop-filter:blur(8px);
+  box-shadow:0 12px 35px rgba(0,0,0,0.35);
+}
 
-    .podium{
-      width:250px;
-      border-radius:28px 28px 0 0;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-end;
-      text-align:center;
-      padding:24px 14px;
-      transition:0.3s;
-      backdrop-filter:blur(8px);
-      box-shadow:0 12px 35px rgba(0,0,0,0.35);
-    }
+.podium:hover{ transform:translateY(-8px); }
 
-    .podium:hover{ transform:translateY(-8px); }
+.first{
+  height:600px;
+  background:linear-gradient(to bottom,#ffec78,#ffde5a,#ffcd37,#fbb728);
+  color:black;
+  order:2;
+}
 
-    .first{
-      height:600px;
-      background:linear-gradient(to bottom,#ffec78,#ffde5a,#ffcd37,#fbb728);
-      color:black;
-      order:2;
-      box-shadow:0 0 18px rgba(255,235,120,0.9),
-                 0 0 45px rgba(255,215,70,0.55);
-    }
+.second{
+  height:520px;
+  background:linear-gradient(to bottom,#f0f0f0,#b4b4b4);
+  color:black;
+  order:1;
+}
 
-    .second{
-      height:520px;
-      background:linear-gradient(to bottom,#f0f0f0,#b4b4b4);
-      color:black;
-      order:1;
-    }
+.third{
+  height:470px;
+  background:linear-gradient(to bottom,#d78c3c,#aa5f19);
+  color:white;
+  order:3;
+}
 
-    .third{
-      height:470px;
-      background:linear-gradient(to bottom,#d78c3c,#aa5f19);
-      color:white;
-      order:3;
-    }
+.content-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
 
-    .content-wrap{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:16px;
-    }
+.rank-number{ font-size:72px; font-weight:900; }
 
-    .rank-number{ font-size:72px; font-weight:900; }
+.team-image{
+  width:145px;
+  height:145px;
+  object-fit:cover;
+  border-radius:24px;
+  border:4px solid rgba(255,255,255,0.92);
+}
 
-    .team-image{
-      width:145px;
-      height:145px;
-      object-fit:cover;
-      border-radius:24px;
-      border:4px solid rgba(255,255,255,0.92);
-      background:white;
-    }
+.class-name{ font-size:50px; font-weight:900; }
+.score{ font-size:40px; font-weight:900; }
 
-    .class-name{ font-size:50px; font-weight:900; }
-    .score{ font-size:40px; font-weight:900; }
+/* 전체 순위 */
+.others{
+  max-width:1000px;
+  margin:auto;
+  margin-bottom:60px;
+}
 
-    /* 전체 순위 */
-    .others{
-      max-width:1000px;
-      margin:auto;
-      margin-bottom:60px;
-    }
+.others h2{
+  text-align:center;
+  margin-bottom:24px;
+  font-size:38px;
+  font-weight:900;
+}
 
-    .others h2{
-      text-align:center;
-      margin-bottom:24px;
-      font-size:38px;
-      font-weight:900;
-    }
+.other-row{
+  background:rgba(255,255,255,0.08);
+  padding:20px 26px;
+  border-radius:18px;
+  margin-bottom:14px;
+  display:flex;
+  justify-content:space-between;
+  font-size:28px;
+  backdrop-filter:blur(8px);
+}
 
-    .other-row{
-      background:rgba(255,255,255,0.08);
-      padding:20px 26px;
-      border-radius:18px;
-      margin-bottom:14px;
-      display:flex;
-      justify-content:space-between;
-      font-size:28px;
-      backdrop-filter:blur(8px);
-    }
+/* 상세표 */
+.table-title{
+  text-align:center;
+  font-size:46px;
+  margin-bottom:25px;
+  font-weight:900;
+}
 
-    /* 상세표 */
-    .table-title{
-      text-align:center;
-      font-size:46px;
-      margin-bottom:25px;
-      font-weight:900;
-    }
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:rgba(255,255,255,0.95);
+  color:black;
+  border-radius:20px;
+  overflow:hidden;
+  table-layout:fixed;
+}
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      background:rgba(255,255,255,0.95);
-      color:black;
-      border-radius:20px;
-      overflow:hidden;
-      table-layout:fixed;
-    }
+th{
+  background:#2563eb;
+  color:white;
+  padding:16px;
+  font-size:24px;
+}
 
-    th{
-      background:#2563eb;
-      color:white;
-      padding:16px;
-      font-size:24px;
-    }
+td{
+  padding:16px;
+  text-align:center;
+  font-size:24px;
+}
 
-    td{
-      padding:16px;
-      text-align:center;
-      font-size:24px;
-    }
+tr:nth-child(even){
+  background:#f1f5f9;
+}
 
-    tr:nth-child(even){ background:#f1f5f9; }
+/* 🔥 응원 UI */
+.cheer-box{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:50px 0;
+}
 
-    /* 🔥 응원 UI */
-    .cheer-box{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin:50px 0;
-    }
+#teamSelect{
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:700;
+}
 
-    #teamSelect{
-      padding:12px 14px;
-      border-radius:12px;
-      font-size:16px;
-      font-weight:700;
-    }
+.cheer-btn{
+  padding:16px 22px;
+  border:none;
+  border-radius:16px;
+  font-size:18px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,#ff3b3b,#ffb347);
+  cursor:pointer;
+}
 
-    .cheer-btn{
-      padding:16px 22px;
-      border:none;
-      border-radius:16px;
-      font-size:18px;
-      font-weight:900;
-      color:white;
-      background:linear-gradient(135deg,#ff3b3b,#ffb347);
-      box-shadow:0 0 25px rgba(255,80,80,0.4);
-      cursor:pointer;
-      transition:0.2s;
-    }
+/* 📱 모바일 최적화 */
+@media (max-width:768px){
 
-    .cheer-btn:hover{ transform:scale(1.05); }
-    .cheer-btn:active{ transform:scale(0.95); }
-    .cheer-btn:disabled{ opacity:0.5; }
+  body{ padding:10px; }
 
-  </style>
+  h1{
+    font-size:28px;
+    margin-bottom:15px;
+  }
+
+  /* 시상대 */
+  .podium-container{
+    gap:6px;
+    flex-wrap:nowrap;
+  }
+
+  .podium{
+    width:32%;
+    padding:8px 4px;
+    border-radius:14px 14px 0 0;
+  }
+
+  .first{ height:180px; }
+  .second{ height:160px; }
+  .third{ height:150px; }
+
+  .rank-number{ font-size:22px; }
+  .class-name{ font-size:14px; }
+  .score{ font-size:13px; }
+
+  .team-image{
+    width:48px;
+    height:48px;
+    border-radius:10px;
+  }
+
+  /* 전체순위 */
+  .other-row{
+    font-size:14px;
+    padding:12px 14px;
+  }
+
+  /* 표 */
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
+  th,td{
+    font-size:12px;
+    padding:8px;
+    min-width:70px;
+  }
+
+  .table-title{
+    font-size:22px;
+    margin-bottom:10px;
+  }
+
+  .cheer-btn{
+    font-size:15px;
+    padding:12px 16px;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -249,7 +304,7 @@
   <tbody></tbody>
 </table>
 
-<!-- 🔥 응원 UI -->
+<!-- 응원 -->
 <h2 class="table-title">🔥 응원하기</h2>
 
 <div class="cheer-box">
@@ -271,119 +326,93 @@
 
 <script>
 
-const sheetID = "11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
-const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+const sheetID="11LGRBurdgaJbJ74_FF8ke_dQgvOYXFA1I2Ls3BFZJhU";
+const url=`https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
 
-const bgVideo = document.getElementById("bg-video");
-bgVideo.src = "https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
-bgVideo.playbackRate =0.25;
-
-const teamImages = {
-  "1-1":"https://i.imgur.com/MpnuhBg.jpeg",
-  "1-4":"https://i.imgur.com/Q3g7twn.jpeg",
-  "1-5":"https://i.imgur.com/6LCLkCp.jpeg",
-  "2-1":"https://i.imgur.com/8oipbXD.jpeg",
-  "2-2":"https://i.imgur.com/AmDrQKp.png",
-  "2-3":"https://i.imgur.com/7dblb2B.jpeg",
-  "2-4":"https://i.imgur.com/igmtQDB.jpeg"
-};
+const bgVideo=document.getElementById("bg-video");
+bgVideo.src="https://res.cloudinary.com/dhenej4it/video/upload/v1778684826/cloudsky_uvdyti.mp4";
+bgVideo.playbackRate=0.25;
 
 const medals=["🥇","🥈","🥉"];
 let lastData="";
 
 async function loadScores(){
-  try{
-    const response=await fetch(url+"&t="+Date.now());
-    const text=await response.text();
-    const json=JSON.parse(text.substring(47).slice(0,-2));
-    const rows=json.table.rows;
+  const res=await fetch(url+"&t="+Date.now());
+  const text=await res.text();
+  const json=JSON.parse(text.substring(47).slice(0,-2));
+  const rows=json.table.rows;
 
-    let html="";
-    let teams=[];
+  let html="";
+  let teams=[];
 
-    rows.forEach(row=>{
-      const cols=row.c.map(c=>c?c.v:"");
+  rows.forEach(r=>{
+    const c=r.c.map(v=>v?v.v:"");
 
-      teams.push({
-        className:cols[0],
-        total:Number(cols[8])||0,
-        rank:Number(cols[9])||0
-      });
-
-      html+="<tr>";
-      cols.forEach(col=>html+=`<td>${col}</td>`);
-      html+="</tr>";
+    teams.push({
+      className:c[0],
+      total:Number(c[8])||0,
+      rank:Number(c[9])||0
     });
 
-    teams.sort((a,b)=>a.rank-b.rank);
+    html+="<tr>"+c.map(v=>`<td>${v}</td>`).join("")+"</tr>";
+  });
 
-    if(html!==lastData){
-      document.querySelector("#scoreTable tbody").innerHTML=html;
-      updatePodium(teams);
-      lastData=html;
-    }
+  teams.sort((a,b)=>a.rank-b.rank);
 
-  }catch(e){console.log(e);}
+  if(html!==lastData){
+    document.querySelector("#scoreTable tbody").innerHTML=html;
+    updatePodium(teams);
+    lastData=html;
+  }
 }
 
 function updatePodium(teams){
-  const podium=document.getElementById("podiumContainer");
-  const other=document.getElementById("otherRanks");
+  const p=document.getElementById("podiumContainer");
+  const o=document.getElementById("otherRanks");
 
-  podium.innerHTML="";
-  other.innerHTML="";
+  p.innerHTML="";
+  o.innerHTML="";
 
   teams.slice(0,3).forEach((t,i)=>{
-    const div=document.createElement("div");
-    div.className=`podium ${["first","second","third"][i]}`;
-
-    div.innerHTML=`
+    const d=document.createElement("div");
+    d.className=`podium ${["first","second","third"][i]}`;
+    d.innerHTML=`
       <div class="content-wrap">
         <div class="rank-number">${medals[i]}</div>
-        ${teamImages[t.className]?`<img src="${teamImages[t.className]}" class="team-image">`:''}
         <div class="class-name">${t.className}</div>
         <div class="score">${t.total}점</div>
-      </div>
-    `;
-    podium.appendChild(div);
+      </div>`;
+    p.appendChild(d);
   });
 
   teams.slice(3).forEach(t=>{
-    const row=document.createElement("div");
-    row.className="other-row";
-    row.innerHTML=`<span>${t.rank}위</span><span>${t.className}</span><span>${t.total}점</span>`;
-    other.appendChild(row);
+    const r=document.createElement("div");
+    r.className="other-row";
+    r.innerHTML=`<span>${t.rank}위</span><span>${t.className}</span><span>${t.total}점</span>`;
+    o.appendChild(r);
   });
 }
 
 loadScores();
 setInterval(loadScores,10000);
 
-/* 🔥 응원 기능 */
-let lastCheerTime=0;
+/* 응원 */
+let lastCheer=0;
 
 function cheer(){
   const team=document.getElementById("teamSelect").value;
-  if(!team){alert("반 선택");return;}
+  if(!team) return alert("반 선택");
 
   const now=Date.now();
-  if(now-lastCheerTime<5000){
-    alert("10초 제한");
-    return;
-  }
+  if(now-lastCheer<5000) return alert("대기");
 
-  lastCheerTime=now;
+  lastCheer=now;
 
-  document.querySelector(".cheer-btn").disabled=true;
-
-  fetch("https://script.google.com/macros/s/AKfycbx45XjOZ5ozSX-hM_deSElmmt1APEr0umehdbf7EhFOVCR8kmZW_Env8amC1d39VK04/exec",{
+  fetch("YOUR_SCRIPT_URL",{
     method:"POST",
+    headers:{"Content-Type":"application/json"},
     body:JSON.stringify({team})
   });
-
-  setTimeout(()=>{
-    document.querySelector(".cheer-btn").disabled=false;
-  },10000);
 
   alert(`${team} 응원 완료🔥`);
 }
